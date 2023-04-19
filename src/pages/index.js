@@ -1,9 +1,9 @@
-import Layouy_Home from "./Components/Layout_Home";
+import Dashboard  from "./Components/Dashboard"
 
 
 
 export default function Home() {
   return (
-    <Layouy_Home></Layouy_Home>
+    <Dashboard></Dashboard>
   );
 }
