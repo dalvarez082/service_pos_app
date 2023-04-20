@@ -1,9 +1,12 @@
 import { SpaceDashboard, Person,Store,ShoppingCart} from '@mui/icons-material';
 
+
 import { Layout, Menu, theme } from 'antd';
 import React from 'react';
 const { Header, Content, Footer, Sider } = Layout;
-const App = () => {
+
+const Dashboard = () => {
+  const [currentPage, setCurrentPage] = React.useState('Dashboard');
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -31,19 +34,23 @@ const App = () => {
             {
                 key: 'Dashboard',
                 icon: React.createElement(SpaceDashboard),
-                label: 'Dashboard'
+                label: 'Dashboard',  
+                onClick: () => setCurrentPage('Graphics'),              
             },{
                 key: 'Clientes',
                 icon: React.createElement(Person),
-                label: 'Clientes'
+                label: 'Clientes',
+                onClick: () => setCurrentPage('Client')
             },{
                 key: 'Ventas',
                 icon: React.createElement(Store),
-                label: 'Ventas'
+                label: 'Ventas',
+                onClick: () => setCurrentPage('Sale')
             },{
                 key: 'Proveedores',
                 icon: React.createElement(ShoppingCart),
-                label: 'Proveedores'
+                label: 'Proveedores',
+                onClick: () => setCurrentPage('Providers')
             }
           ]} 
         />
@@ -60,7 +67,7 @@ const App = () => {
             margin: '24px 16px 0',
           }}
         >
-          <div
+          <div className='pages'
             style={{
               padding: 24,
               minHeight: 360,
@@ -69,11 +76,16 @@ const App = () => {
               
             }}
           >
-            content
+
+              {currentPage === 'Dashboard' && <div>Dashboard content here</div>}
+              {currentPage === 'Clientes' && <div>Clientes content here</div>}
+              {currentPage === 'Ventas' && <div>Ventas content here</div>}
+              {currentPage === 'Proveedores' && <div>Proveedores content here</div>}
+            
           </div>
         </Content>        
       </Layout>
     </Layout>
   );
 };
-export default App;
+export default Dashboard;
