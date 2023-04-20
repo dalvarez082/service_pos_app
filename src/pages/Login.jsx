@@ -2,21 +2,30 @@ import React from 'react';
 import { Card, Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router';
-import db from '../';
+import db from '../data/user.json';
 
 const Login = () => {
+const [form] = Form.useForm();
+
   const onFinish = (values) => {
-    console.log('Success:', values);
+    handleLogin(values);
   };
 
   const router = useRouter();
 
-  const handleLogin = () => {
-    console.log('Logged in!');
-    router.push('./Components/Dashboard');
+  const handleLogin = (values) => {
+
+        const users = db.users.find(
+          (u) => u.name === values.username && u.password === values.password
+        );
+        if (users) {
+          router.push('/Components/Dashboard');
+        } else {
+          console.log('Invalid username or password');
+
+        }
+      
   };
-
-
 
 
   const onFinishFailed = (errorInfo) => {
@@ -43,13 +52,14 @@ const Login = () => {
       >
         <Form
           name="basic"
+          form={form}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
-            label="Username"
+            label="Nombre"
             name="username"
             rules={[
               { required: true, message: 'Please input your username!' },
@@ -62,7 +72,7 @@ const Login = () => {
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label="Contraseña"
             name="password"
             rules={[
               { required: true, message: 'Please input your password!' },
@@ -77,7 +87,7 @@ const Login = () => {
           <Form.Item style={{ marginTop: '20px' }}>
             
             <Button 
-                onClick={handleLogin}
+
                 type="primary"
                 htmlType="submit"
                 style={{
@@ -94,5 +104,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-
+export default Login;
