@@ -1,5 +1,7 @@
 import { Space, Table, Tag } from 'antd';
 const { Column, ColumnGroup } = Table;
+
+
 const data = [
   {
     key: '1',
@@ -27,6 +29,8 @@ const data = [
   },
 ];
 const Table_info = () => (
+
+
   <Table dataSource={data}>
     <ColumnGroup title="Name">
       <Column title="First Name" dataIndex="firstName" key="firstName" />
