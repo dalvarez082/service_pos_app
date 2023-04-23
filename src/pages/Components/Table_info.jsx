@@ -1,67 +1,81 @@
-import { Space, Table, Tag } from 'antd';
-const { Column, ColumnGroup } = Table;
-
+import { Space, Table, Button } from 'antd';
+import { Delete, EditNote,} from '@mui/icons-material';
 
 const data = [
   {
-    key: '1',
-    firstName: 'John',
-    lastName: 'Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    cc: '123456789',
+    name: 'Camila Ospina',
+    alias: 'Echabolita',
+    district : 'Belen Altavista',
+    address: 'Escaleras',
+    balance : 0,    
   },
   {
-    key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
+    cc: '123456789',
+    name: 'Camila Ospina',
+    alias: 'Echabolita',
+    district : 'Belen Altavista',
+    address: 'Escaleras',
+    balance : 0,    
+  },{
+    cc: '123456789',
+    name: 'Camila Ospina',
+    alias: 'Echabolita',
+    district : 'Belen Altavista',
+    address: 'Escaleras',
+    balance : 0,    
   },
 ];
-const Table_info = () => (
 
+const columns = [
+  {
+    title: 'CC',
+    dataIndex: 'cc',
+    key: 'cc',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'Nombre',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: 'Alias',
+    dataIndex: 'alias',
+    key: 'alias',
+  },
+  {
+    title: 'Barrio',
+    dataIndex: 'district',
+    key: 'district',
+  },
+  {
+    title: 'Dirección',
+    dataIndex: 'address',
+    key: 'address',
+  }, 
+  {
+    title: 'Saldo',
+    dataIndex: 'balance',
+    key: 'balance',
+  },   
+  {
+    title: 'Acciónes',
+    key: 'action',
+    render: (text, record) => (
+      <Space size="middle">
+        <Button type="primary" icon={<EditNote />} />
+        <Button type="danger" icon={<Delete />} />
+        
 
-  <Table dataSource={data}>
-    <ColumnGroup title="Name">
-      <Column title="First Name" dataIndex="firstName" key="firstName" />
-      <Column title="Last Name" dataIndex="lastName" key="lastName" />
-    </ColumnGroup>
-    <Column title="Age" dataIndex="age" key="age" />
-    <Column title="Address" dataIndex="address" key="address" />
-    <Column
-      title="Tags"
-      dataIndex="tags"
-      key="tags"
-      render={(tags) => (
-        <>
-          {tags.map((tag) => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </>
-      )}
-    />
-    <Column
-      title="Action"
-      key="action"
-      render={(_, record) => (
-        <Space size="middle">
-          <a>Invite {record.lastName}</a>
-          <a>Delete</a>
-        </Space>
-      )}
-    />
-  </Table>
-);
+        
+      </Space>
+    ),
+  },
+];
+
+const Table_info = () => <Table columns={columns} dataSource={data} scroll={{ y: 240 }} style={{
+
+}} />;
 export default Table_info;
