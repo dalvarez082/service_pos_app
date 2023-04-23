@@ -1,10 +1,10 @@
 import { SpaceDashboard, Person, Store, ShoppingCart,  } from '@mui/icons-material';
 import { Layout, Menu, theme } from 'antd';
 import React from 'react';
-import Client from '../Client';
-import Graphics from '../Graphics';
-import Providers from '../Providers';
-import Sale from '../Sales';
+import Client from './Client';
+import Graphics from './Graphics';
+import Providers from './Providers';
+import Sale from './Sales';
 
 
 

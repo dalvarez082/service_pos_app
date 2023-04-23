@@ -19,7 +19,8 @@ const [form] = Form.useForm();
           (u) => u.name === values.username && u.password === values.password
         );
         if (users) {
-          router.push('/Components/Dashboard');
+          router.push('/Dashboard');
+          localStorage.setItem('authToken', 'myToken');
         } else {
           console.log('Invalid username or password');
 

@@ -1,4 +1,4 @@
-import Dashboard  from "./Components/Dashboard"
+import Dashboard  from "./Dashboard"
 import Login from "./Login";
 import Client from "./Client";
 
