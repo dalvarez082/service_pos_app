@@ -1,13 +1,9 @@
 import React from 'react';
+import Table_info from './Components/Table_info';
 
 const Client = () => {
   return (
-    <div style={{
-      color : 'black'
-    }}> 
-      <h1>Client Page</h1>
-      <p>This is the Client page content.</p>
-    </div>
+<Table_info></Table_info>
   );
 };
 
