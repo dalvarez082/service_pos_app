@@ -1,5 +1,6 @@
 import { AutoComplete, Input } from 'antd';
 import { useState } from 'react';
+
 const getRandomInt = (max, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min;
 const searchResult = (query) =>
   new Array(getRandomInt(5))
