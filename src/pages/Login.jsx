@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router';
-import db from '../data/user.json';
+import db from '../data/db.json';
 
 const Login = () => {
 const [form] = Form.useForm();

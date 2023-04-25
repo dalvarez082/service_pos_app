@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "password": "123"
+    }
+  ],
+
+  "client": [
+
+    {
+      "key": "123456789",
+      "name": "Camila Ospina",
+      "alias": "Echabolita",
+      "birth_date" : "2022-04-15",
+      "district" : "Belen Altavista",
+      "address": "Escaleras",
+      "balance" : 0    
+    },{
+      "key": "123",
+      "name": "Camila Ospina",
+      "alias": "Echabolita",
+      "birth_date" : "2022-04-15",
+      "district" : "Belen Altavista",
+      "address": "Escaleras",
+      "balance" : 0    
+    },{
+      "key": "16789",
+      "name": "Camila Ospina",
+      "alias": "Echabolita",
+      "birth_date" : "2022-04-15",
+      "district" : "Belen Altavista",
+      "address": "Escaleras",
+      "balance" : 0    
+    }
+    
+
+
+
+
+
+  ]
+
+
+}

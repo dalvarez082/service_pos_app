@@ -1,10 +1,17 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from 'antd';
 import { useState } from 'react';
-const { Option } = Select;
+import React, { useRef } from 'react';
+import axios from 'axios';
+import db from '../../data/db.json';
+
+
+
+
 
 
 const Add_info = () => {
+
 
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
@@ -13,6 +20,40 @@ const Add_info = () => {
   const onClose = () => {
     setOpen(false);
   };
+
+  
+
+
+
+  
+
+  const add_client = () => {
+    const form = formRef.current;
+    form.validateFields().then(values => {  
+      console.log(values.name) 
+      // Definimos los datos del nuevo cliente
+      const newClient = {
+        "key": values.key,
+        "name": values.name,
+        "alias": values.alias,
+        "birth_date": values.birth_date.format('YYYY-MM-DD'),
+        "district": values.district,
+        "address": values.address,
+        "balance": 0
+      };
+      console.log(newClient)
+      form.resetFields();
+      
+      onClose();
+    });
+    
+  };
+  
+  const formRef = useRef(null);
+
+
+
+
   return (
     <>
 
@@ -31,18 +72,21 @@ const Add_info = () => {
         extra={
           <Space>
             <Button onClick={onClose}>Cancelar</Button>
-            <Button onClick={onClose} type="primary">
+            <Button type="primary" onClick={add_client}>
               Agregar
             </Button>
           </Space>
         }
       >
         
-        <Form layout="vertical" hideRequiredMark  >
+        <Form layout="vertical" hideRequiredMark 
+         initialValues={{ remember: true }}
+         ref={formRef}
+         >
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="id"
+                name="key"
                 label="C.C"
                 rules={[
                   {
@@ -77,7 +121,7 @@ const Add_info = () => {
             <Col span={12}>
               <Form.Item
                 name="alias"
-                label="Seudonombre"
+                label="alias"
                 rules={[
                   {
                     required: true,
@@ -112,7 +156,7 @@ const Add_info = () => {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="ndistrict"
+                name="district"
                 label="Barrio"
                 rules={[
                   {
@@ -127,7 +171,7 @@ const Add_info = () => {
             </Col>
             <Col span={12}>
               <Form.Item
-                name="dateTime"
+                name="birth_date"
                 label="Fecha de nacimiento"
                 rules={[
                   {
@@ -174,4 +218,4 @@ const Add_info = () => {
    
   );
 };
-export default Add_info;
+export default Add_info;

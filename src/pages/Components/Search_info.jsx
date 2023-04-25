@@ -1,5 +1,7 @@
+import { Search } from '@mui/icons-material';
 import { AutoComplete, Input } from 'antd';
 import { useState } from 'react';
+
 
 const getRandomInt = (max, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min;
 const searchResult = (query) =>
@@ -32,7 +34,9 @@ const searchResult = (query) =>
         ),
       };
     });
-const App = () => {
+
+
+const Search_info = () => {
   const [options, setOptions] = useState([]);
   const handleSearch = (value) => {
     setOptions(value ? searchResult(value) : []);
@@ -54,4 +58,4 @@ const App = () => {
     </AutoComplete>
   );
 };
-export default App;
+export default Search_info;

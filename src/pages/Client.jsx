@@ -10,17 +10,15 @@ const Client = () => {
     <div>
 
       <div>
-        
-        <Search_info></Search_info>
-        <Add_info></Add_info>
+        <Search_info key="search"/>
+        <Add_info key="add"/>
       </div>
 
 
 
-      <div style={{
-        height : '80%'
-      }}>
-      <Table_info></Table_info>
+
+      <div>
+      <Table_info />
       </div>
 
      
