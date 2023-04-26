@@ -19,12 +19,12 @@ const Dashboard = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   
-  useEffect(() => {
-    const token = Cookies.get('token');
-    if (!token) {
-      window.location.href = '/Login'; 
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = Cookies.get('token');
+  //   if (!token) {
+  //     window.location.href = '/Login'; 
+  //   }
+  // }, []);
 
   const handleMenuClick = (page) => {
     setCurrentPage(page);

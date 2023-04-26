@@ -6,27 +6,47 @@ import axios from 'axios';
 
 
 const Add_info = (props) => { 
-  const { refresh_client } = props;
- 
 
+  const { refresh_client ,visible, onClose,show_data_client } = props; 
   const [open, setOpen] = useState(false);
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
-
-  
 
 
   const formRef = useRef(null);
+  const form = formRef.current;
 
+  useEffect(() => {
+    setOpen(visible);
+  }, [visible]);
 
+  const showDrawer = () => {
+    setOpen(true);
+    onClose();
+  };
 
+  const handleOnClose = () => {
+    setOpen(false);
+    onClose();
+    form.resetFields();
+     
+  }; 
+
+  const load_data_client=() =>{
+
+    const  client= show_data_client();
+
+    const client_values = {
+      key: client.cc,
+      name: client.name,
+      alias: client.alias,
+      birth_date: client.birth_date,
+      district: client.district,
+      address: client.address,
+      balance: client.balance
+    };
+    form.setFieldsValue(client_values); 
+  }
   
-  const add_client = () => {
-    const form = formRef.current;
+  const add_client = () => {    
     form.validateFields().then(values => {  
       const newClient = {
         "cc": values.key,
@@ -68,14 +88,14 @@ const Add_info = (props) => {
         bodyStyle={{
           paddingBottom: 80,
         }}
-        extra={
-          <Space>
-            <Button onClick={onClose}>Cancelar</Button>
-            <Button type="primary" onClick={add_client}>
-              Agregar
-            </Button>
-          </Space>
-        }
+          extra={
+            <Space>
+              <Button onClick={handleOnClose} >Cancelar</Button>
+              <Button type="primary" onClick={add_client}>
+                Agregar
+              </Button>
+            </Space>
+          }
       >
         
         <Form layout="vertical" hideRequiredMark 

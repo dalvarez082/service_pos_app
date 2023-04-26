@@ -6,15 +6,10 @@ import { useEffect, useState } from 'react';
 
 
 
-
-
-
-
 const Table_info = (props) => {
   const [data, setData] = useState([]);
-  const { load_client } = props;
-
- 
+  const { load_client,toggleDrawer,show_data_client,sent_data_form } = props; 
+  
 
   const delete_client = (id) => {
     axios.delete(`http://localhost:3001/client/${id}`)
@@ -24,6 +19,10 @@ const Table_info = (props) => {
       })
       .catch(err => console.log(err));
   }
+
+  
+
+  
 
   useEffect(() => {
   load_client().then(clients => setData(clients));
@@ -70,7 +69,11 @@ const Table_info = (props) => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <Button type="primary" icon={<EditNote />} />
+          <Button type="primary" 
+          icon={<EditNote />} 
+          onClick={() => {toggleDrawer() ; show_data_client(record.id) ; sent_data_form() } } />
+
+
           <Button type="danger" icon={<Delete />} onClick={() => delete_client(record.id)} />
         </Space>
       ),
