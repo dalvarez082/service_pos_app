@@ -2,7 +2,8 @@ import React from 'react';
 import { Card, Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router';
-import db from '../data/db.json';
+import axios from 'axios';
+import Cookies from 'cookies-js';
 
 const Login = () => {
 const [form] = Form.useForm();
@@ -13,20 +14,32 @@ const [form] = Form.useForm();
 
   const router = useRouter();
 
-  const handleLogin = (values) => {
 
-        const users = db.users.find(
-          (u) => u.name === values.username && u.password === values.password
-        );
-        if (users) {
-          router.push('/Dashboard');
-          localStorage.setItem('authToken', 'myToken');
-        } else {
-          console.log('Invalid username or password');
+  const handleLogin = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/users');
+      const data = response.data;
+      const username = form.getFieldValue('username');
+      const password = form.getFieldValue('password');
+      const found = data.find((user) => {
+        return user.name === username && user.password === password;
+      });
+      found ? window.location.href =('/Dashboard') : alert('Verifique sus credenciales');
 
-        }
-      
+      if (found) {
+        console.log("inicio de sesion")
+        // Crear un token de sesión y almacenarlo en una cookie
+        Cookies.set('token', '123456', { expires: 30 });
+      } else {
+        alert('Verifique sus credenciales');
+      }
+    }
+
+    catch (error) {
+      console.error(error);
+    }
   };
+  
 
 
   const onFinishFailed = (errorInfo) => {
