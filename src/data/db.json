@@ -4,43 +4,73 @@
       "id": 1,
       "name": "Juan",
       "password": "123"
+    },
+    {
+      "name": "Maria",
+      "password": "abc123",
+      "id": 2
     }
   ],
-
   "client": [
-
     {
-      "key": "123456789",
+      "cc": "1234789",
       "name": "Camila Ospina",
       "alias": "Echabolita",
-      "birth_date" : "2022-04-15",
-      "district" : "Belen Altavista",
+      "birth_date": "2022-04-15",
+      "district": "Belen Altavista",
       "address": "Escaleras",
-      "balance" : 0    
-    },{
-      "key": "123",
-      "name": "Camila Ospina",
-      "alias": "Echabolita",
-      "birth_date" : "2022-04-15",
-      "district" : "Belen Altavista",
-      "address": "Escaleras",
-      "balance" : 0    
-    },{
-      "key": "16789",
-      "name": "Camila Ospina",
-      "alias": "Echabolita",
-      "birth_date" : "2022-04-15",
-      "district" : "Belen Altavista",
-      "address": "Escaleras",
-      "balance" : 0    
+      "balance": 0,
+      "id": 1
+    },
+    {
+      "cc": "111111111",
+      "name": "bbbbb",
+      "alias": "nnnnnnnnn",
+      "birth_date": "2023-04-18",
+      "district": "llllllllllllll",
+      "address": "kkkkkkkkkk",
+      "balance": 0,
+      "id": 12
+    },
+    {
+      "cc": "222222222",
+      "name": "ccccccccc",
+      "alias": "qqqqqqqqqq",
+      "birth_date": "2023-04-24",
+      "district": "ppppppppppp",
+      "address": "zzzzzzzzzzzz",
+      "balance": 0,
+      "id": 13
+    },
+    {
+      "cc": "4444444444",
+      "name": "Edssssss",
+      "alias": "kjhdsjhdskjdjk",
+      "birth_date": "2023-04-09",
+      "district": "jhdlskjdlkjshdklshjds",
+      "address": "jkhkjhkjdlkjhdslkj",
+      "balance": 0,
+      "id": 14
+    },
+    {
+      "cc": "999999",
+      "name": "vvvvv",
+      "alias": "jjjjjjjjj",
+      "birth_date": "2023-04-18",
+      "district": "vvvvvvvvvvvvvvvv",
+      "address": "ggggggggggg",
+      "balance": 0,
+      "id": 15
+    },
+    {
+      "cc": "1234445",
+      "name": "Diego Alvarez",
+      "alias": "El coste",
+      "birth_date": "2023-04-10",
+      "district": "Simón bolívar ",
+      "address": "Necocli",
+      "balance": 0,
+      "id": 16
     }
-    
-
-
-
-
-
   ]
-
-
 }

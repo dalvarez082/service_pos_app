@@ -1,17 +1,13 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from 'antd';
 import { useState } from 'react';
-import React, { useRef } from 'react';
+import React, { useRef , useEffect} from 'react';
 import axios from 'axios';
-import db from '../../data/db.json';
 
 
-
-
-
-
-const Add_info = () => {
-
+const Add_info = (props) => { 
+  const { refresh_client } = props;
+ 
 
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
@@ -24,35 +20,38 @@ const Add_info = () => {
   
 
 
+  const formRef = useRef(null);
+
+
 
   
-
   const add_client = () => {
     const form = formRef.current;
     form.validateFields().then(values => {  
-      console.log(values.name) 
-      // Definimos los datos del nuevo cliente
       const newClient = {
-        "key": values.key,
+        "cc": values.key,
         "name": values.name,
         "alias": values.alias,
         "birth_date": values.birth_date.format('YYYY-MM-DD'),
         "district": values.district,
         "address": values.address,
-        "balance": 0
+        "balance": 0    
       };
-      console.log(newClient)
-      form.resetFields();
-      
-      onClose();
+
+      const url = "http://localhost:3001/client";
+      axios.post(url,newClient)
+        .then(res => {
+          console.log("Cliente agregado exitosamente");
+          form.resetFields();
+          console.log(newClient);
+          onClose();
+          refresh_client(); 
+        })
+        .catch(error => {
+          console.log("Ha ocurrido un error al agregar el cliente:", error);
+        });
     });
-    
   };
-  
-  const formRef = useRef(null);
-
-
-
 
   return (
     <>
@@ -214,7 +213,7 @@ const Add_info = () => {
         
       </Drawer>
      
-    </>
+    </> 
    
   );
 };
