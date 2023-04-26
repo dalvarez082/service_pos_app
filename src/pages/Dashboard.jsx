@@ -5,6 +5,8 @@ import Client from './Client';
 import Graphics from './Graphics';
 import Providers from './Providers';
 import Sale from './Sales';
+import Cookies from 'cookies-js';
+import { useEffect } from 'react';
 
 
 
@@ -16,6 +18,13 @@ const Dashboard = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (!token) {
+      window.location.href = '/Login'; 
+    }
+  }, []);
 
   const handleMenuClick = (page) => {
     setCurrentPage(page);
@@ -100,5 +109,6 @@ const Dashboard = () => {
     </Layout>
   );
 };
+
 
 export default Dashboard;
