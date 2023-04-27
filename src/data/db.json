@@ -4,43 +4,129 @@
       "id": 1,
       "name": "Juan",
       "password": "123"
+    },
+    {
+      "name": "Maria",
+      "password": "abc123",
+      "id": 2
     }
   ],
-
   "client": [
-
     {
-      "key": "123456789",
+      "cc": "1234789",
       "name": "Camila Ospina",
       "alias": "Echabolita",
-      "birth_date" : "2022-04-15",
-      "district" : "Belen Altavista",
+      "birth_date": "2022-04-15",
+      "district": "Belen Altavista",
       "address": "Escaleras",
-      "balance" : 0    
-    },{
-      "key": "123",
-      "name": "Camila Ospina",
-      "alias": "Echabolita",
-      "birth_date" : "2022-04-15",
-      "district" : "Belen Altavista",
-      "address": "Escaleras",
-      "balance" : 0    
-    },{
-      "key": "16789",
-      "name": "Camila Ospina",
-      "alias": "Echabolita",
-      "birth_date" : "2022-04-15",
-      "district" : "Belen Altavista",
-      "address": "Escaleras",
-      "balance" : 0    
+      "balance": 0,
+      "id": 1
+    },
+    {
+      "cc": "111111111",
+      "name": "bbbbb",
+      "alias": "nnnnnnnnn",
+      "birth_date": "2023-04-18",
+      "district": "llllllllllllll",
+      "address": "kkkkkkkkkk",
+      "balance": 0,
+      "id": 12
+    },
+    {
+      "cc": "222222222",
+      "name": "ccccccccc",
+      "alias": "qqqqqqqqqq",
+      "birth_date": "2023-04-24",
+      "district": "ppppppppppp",
+      "address": "zzzzzzzzzzzz",
+      "balance": 0,
+      "id": 13
+    },
+    {
+      "cc": "4444444444",
+      "name": "Edssssss",
+      "alias": "kjhdsjhdskjdjk",
+      "birth_date": "2023-04-09",
+      "district": "jhdlskjdlkjshdklshjds",
+      "address": "jkhkjhkjdlkjhdslkj",
+      "balance": 0,
+      "id": 14
+    },
+    {
+      "cc": "1234445",
+      "name": "Diego Alvarez",
+      "alias": "El coste",
+      "birth_date": "2023-04-10",
+      "district": "Simón bolívar ",
+      "address": "Necocli",
+      "balance": 0,
+      "id": 16
+    },
+    {
+      "cc": "1411115888",
+      "name": "buenas ",
+      "alias": "noches ",
+      "birth_date": "2023-04-10",
+      "district": "estan",
+      "address": "como ",
+      "balance": 0,
+      "id": 18
+    },
+    {
+      "cc": "5656565",
+      "name": "dsdsdsds",
+      "alias": "dsdsdsd",
+      "birth_date": "2023-04-17",
+      "district": "dsdsdsds",
+      "address": "dsdsdsds",
+      "balance": 0,
+      "id": 19
+    },
+    {
+      "cc": "123",
+      "name": "fsfa",
+      "alias": "gsg",
+      "birth_date": "2023-04-04",
+      "district": "gsg",
+      "address": "sgsg",
+      "balance": 0,
+      "id": 20
+    },
+    {
+      "cc": "12444548",
+      "name": "Diego alvarez",
+      "alias": "El coste",
+      "birth_date": "2023-04-11",
+      "district": "Poblado",
+      "address": "la loma",
+      "balance": 0,
+      "id": 21
     }
-    
-
-
-
-
-
+  ],
+  "Pipetas": [
+    {
+      "id": 1,
+      "nombre": "x40 lbs",
+      "Valor": 95000
+    },
+    {
+      "id": 2,
+      "nombre": "x30 lbs",
+      "Valor": 75000
+    },
+    {
+      "id": 3,
+      "nombre": "x100 lbs",
+      "Valor": 220000
+    }
+  ],
+  "Ventas": [
+    {
+      "id": 1,
+      "date": "2023-04-18",
+      "client": 1,
+      "Tipo_pipeta": 1,
+      "cantidad": 2
+    }
   ]
-
-
 }
