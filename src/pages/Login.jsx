@@ -1,9 +1,11 @@
 import React from 'react';
-import { Card, Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useRouter } from 'next/router';
+import { Card, Form, Input, Button, notification } from 'antd';
 import axios from 'axios';
 import Cookies from 'cookies-js';
+import {  LockOutlined, MailOutlined } from '@ant-design/icons';
+import { ErrorOutlineOutlined} from '@mui/icons-material';
+import jwt from 'jsonwebtoken';
+import { SECRET } from '@/constants';
 
 const Login = () => {
 const [form] = Form.useForm();
@@ -11,9 +13,6 @@ const [form] = Form.useForm();
   const onFinish = (values) => {
     handleLogin(values);
   };
-
-  const router = useRouter();
-
 
   const handleLogin = async () => {
     try {
@@ -24,24 +23,37 @@ const [form] = Form.useForm();
       const found = data.find((user) => {
         return user.name === username && user.password === password;
       });
-      found ? window.location.href =('/Dashboard') : alert('Verifique sus credenciales');
 
       if (found) {
         console.log("inicio de sesion")
-        // Crear un token de sesión y almacenarlo en una cookie
-        Cookies.set('token', '123456', { expires: 30 });
-      } else {
-        alert('Verifique sus credenciales');
+        const user_log =  {
+          id: found.id,
+          name: found.name,
+        };
+       
+        console.log(user_log)
+        const token = jwt.sign(user_log, SECRET);
+        console.log("login: ",token)
+        Cookies.set('token', token);
+        window.location.href =('/Dashboard');
+      } 
+
+      else {
+        notification.error({
+          message: <strong>Error: inicio de sesión</strong>,
+          description: 'Lo siento, verifica de nuevo tus datos.',
+          placement: 'top',
+          duration: 4,
+          icon: <ErrorOutlineOutlined style={{ color: 'red' }}/>,
+          closeIcon: null
+        });
       }
     }
-
     catch (error) {
       console.error(error);
     }
   };
   
-
-
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
@@ -58,10 +70,17 @@ const [form] = Form.useForm();
       <Card
         title="Inicio de sesión"
         style={{
-          width: '30%',
+          width: '35%',
           borderRadius: '10px',
           textAlign: 'center',
-          height: "40vh",
+          height: "45vh",
+          fontSize: '28px',
+          fontWeight: 'bold',
+          color: '#EDEDED',
+          fontFamily: 'Poppins, sans-serif',
+          
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)',
+          border: 'none',
         }}
       >
         <Form
@@ -73,32 +92,32 @@ const [form] = Form.useForm();
           autoComplete="off"
         >
           <Form.Item
-            label="Nombre"
             name="username"
             rules={[
-              { required: true, message: 'Please input your username!' },
+              { required: true, message: 'Por favor ingresa el nombre' },
             ]}
           >
             <Input
-              prefix={<UserOutlined className="site-form-item-icon" />}
+              prefix={<MailOutlined style={{ fontSize: '20px', color: '#08c' }} />}
               placeholder="Username"
+              style={{ width: '330px' , marginTop: '25px' }}
             />
           </Form.Item>
 
           <Form.Item
-            label="Contraseña"
             name="password"
             rules={[
-              { required: true, message: 'Please input your password!' },
+              { required: true, message: 'Por favor ingresa la contraseña' },
             ]}
           >
             <Input.Password            
-              prefix={<LockOutlined className="site-form-item-icon" />}
+              prefix={<LockOutlined style={{ fontSize: '20px', color: '#08c' }} />}
               placeholder="Password"
+              style={{ width: '330px' ,marginTop: '10px' }}
             />
           </Form.Item>
 
-          <Form.Item style={{ marginTop: '20px' }}>
+          <Form.Item >
             
             <Button 
 
@@ -107,6 +126,7 @@ const [form] = Form.useForm();
                 style={{
                     width: '50%',
                     textAlign: 'center',
+                    
               }}
             >
               Inicio de sesión
@@ -119,3 +139,7 @@ const [form] = Form.useForm();
 };
 
 export default Login;
+
+
+
+

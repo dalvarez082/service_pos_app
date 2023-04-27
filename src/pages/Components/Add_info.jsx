@@ -5,11 +5,6 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 import db from '../../data/db.json';
 
-
-
-
-
-
 const Add_info = () => {
 
 
@@ -20,12 +15,6 @@ const Add_info = () => {
   const onClose = () => {
     setOpen(false);
   };
-
-  
-
-
-
-  
 
   const add_client = () => {
     const form = formRef.current;
