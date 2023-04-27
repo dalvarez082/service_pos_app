@@ -90,7 +90,13 @@ const Client = () => {
 
   return (
     <div>
-      <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Search_info key="search" search={search} reset={reset}/>
 
         <Add_info
@@ -105,7 +111,7 @@ const Client = () => {
         />
       </div>
 
-      <div>
+      <div style={{marginTop: '35px'}}>
         <Table_info
           load_client={load_client}
           toggleDrawer={toggleDrawer}

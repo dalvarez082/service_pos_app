@@ -1,8 +1,10 @@
 import React from "react";
-import { Space, Table, Button, Tooltip, Popconfirm, message } from "antd";
+import { Space, Table, Button, Popconfirm, notification, Tooltip } from "antd";
 import { Delete, EditNote } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 const Table_info = (props) => {
   const { load_client, toggleDrawer, show_data_client, actionClient, data } =
@@ -13,8 +15,14 @@ const Table_info = (props) => {
       .delete(`http://localhost:3001/client/${id}`)
       .then((res) => {
         console.log("eliminado existoso");
-        message.info('eliminado existoso');
-        load_client()
+        notification.success({
+          message: <strong>Cliente eliminado exitosamente</strong>,
+          placement: "top",
+          duration: 3,
+          icon: <CheckCircleOutlineIcon style={{ color: "green" }} />,
+          closeIcon: null,
+        });
+        load_client().then((clients) => setData(clients));
       })
       .catch((err) => console.log(err));
   };
@@ -64,7 +72,7 @@ const Table_info = (props) => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <Tooltip title="Editar">
+          <Tooltip title="Editar" color={'cyan'}>
             <Button
               type="primary"
               icon={<EditNote />}
@@ -74,19 +82,23 @@ const Table_info = (props) => {
             />
           </Tooltip>
 
-          <Tooltip title="Eliminar">
+          <Tooltip title="Eliminar" color={'red'}>
             <Popconfirm
               placement="topRight"
-              title={"Confirmacion"}
-              description={"Esta seguro que quiere elimar este cliente"}
+              title={<strong style={{ fontSize: "18px" }}>Confirmación</strong>}
+              description={
+                <strong>¿Esta seguro que quiere eliminar este cliente?</strong>
+              }
               onConfirm={() => delete_client(record.id)}
-              okText="Yes"
+              okText="Si"
               cancelText="No"
+              icon={
+                <ErrorOutlineIcon
+                  style={{ color: "#FFD700", fontSize: "30px" }}
+                />
+              }
             >
-              <Button
-                type="danger"
-                icon={<Delete />}                
-              />
+              <Button type="danger" icon={<Delete />} />
             </Popconfirm>
           </Tooltip>
         </Space>
@@ -94,7 +106,7 @@ const Table_info = (props) => {
     },
   ];
 
-  return <Table columns={columns} dataSource={data} scroll={{ y: 240 }} />;
+  return <Table columns={columns} dataSource={data} scroll={{ y: 290 }} />;
 };
 
 export default Table_info;

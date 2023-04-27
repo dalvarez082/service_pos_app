@@ -8,8 +8,11 @@ import {
   Input,
   Row,
   Select,
+  notification,
   Space,
 } from "antd";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useState } from "react";
 import React, { useRef, useEffect } from "react";
 import axios from "axios";
@@ -62,6 +65,13 @@ const Add_info = (props) => {
         .post(url, newClient)
         .then((res) => {
           console.log("Cliente agregado exitosamente");
+          notification.success({
+            message: <strong>Cliente agregado exitosamente</strong>,
+            placement: 'top',
+            duration: 3,
+            icon: <CheckCircleOutlineIcon style={{ color: 'green' }}/>,
+            closeIcon: null
+          });
           form.resetFields();
           console.log(newClient);
           onClose();
@@ -120,8 +130,16 @@ const Add_info = (props) => {
 
   return (
     <>
-      <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
-        Agregar Cliente
+      <Button type="primary" onClick={showDrawer} icon={<PersonAddIcon /> }
+        style={{ 
+    fontSize: '16px', 
+    padding: '10px 20px', 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  }}
+      >
+<span style={{ marginLeft: '5px' }}>Agregar Cliente</span>
       </Button>
 
       <Drawer
