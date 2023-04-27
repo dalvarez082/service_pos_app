@@ -1,47 +1,49 @@
-import React from 'react';
-import Table_info from './Components/Table_info';
-import Search_info from './Components/Search_info';
-import Add_info from './Components/Add_info';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-
-
+import React from "react";
+import Table_info from "./Components/Table_info";
+import Search_info from "./Components/Search_info";
+import Add_info from "./Components/Add_info";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { Form } from "antd";
 
 const Client = () => {
-
   const [data, setData] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
 
-
+  const [form] = Form.useForm();
 
   const load_client = () => {
-    return axios.get('http://localhost:3001/client')
-      .then(res => {
-        const clients = res.data.map(client => ({ ...client, key: client.cc }));
+    return axios
+      .get("http://localhost:3001/client")
+      .then((res) => {
+        const clients = res.data.map((client) => ({
+          ...client,
+          key: client.cc,
+        }));
         return clients;
       })
-      .catch(err => console.log(err));
-  }
+      .catch((err) => console.log(err));
+  };
 
-  const show_data_client =(id) =>{
-    axios.get(`http://localhost:3001/client/${id}`)
-    .then(res => {
-      const client = res.data;
-      console.log(client)
-      return client;      
-    })
-    .catch(err => console.log(err))
-  }
+  const show_data_client = (record) => {
+    // TODO: set correct format date
+    const client_values = {
+      key: record.cc,
+      name: record.name,
+      alias: record.alias,
+      // birth_date: record.birth_date,
+      //birth_date: new Date(Date.now()).toLocaleDateString(),
+      district: record.district,
+      address: record.address,
+      balance: record.balance,
+    };
 
-  const sent_data_form=()=>{
-    //load_data_client();
-  }
-
-
+    form.setFieldsValue(client_values);
+    toggleDrawer();
+  };
 
   const refresh_client = () => {
-    load_client().then(clients => {
+    load_client().then((clients) => {
       setData(clients);
     });
   };
@@ -50,40 +52,29 @@ const Client = () => {
     setDrawerVisible(!drawerVisible);
   };
 
-
-  return (   
+  return (
     <div>
-
       <div>
-        <Search_info key="search"/>
-        
-        <Add_info key="add" 
-        refresh_client={refresh_client} 
-        visible={drawerVisible}
-         onClose={toggleDrawer}
-         show_data_client ={show_data_client} 
-         />
-      </div>
+        <Search_info key="search" />
 
-
-
-
-      <div>
-      <Table_info 
-        load_client={load_client}  
-        toggleDrawer={toggleDrawer}  
-        show_data_client={show_data_client}
-        sent_data_form = {sent_data_form}
-
+        <Add_info
+          key="add"
+          refresh_client={refresh_client}
+          visible={drawerVisible}
+          onClose={toggleDrawer}
+          show_data_client={show_data_client}
+          form={form}
         />
       </div>
 
-     
-
+      <div>
+        <Table_info
+          load_client={load_client}
+          toggleDrawer={toggleDrawer}
+          show_data_client={show_data_client}
+        />
+      </div>
     </div>
-
-
-
   );
 };
 

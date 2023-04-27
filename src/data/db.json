@@ -53,16 +53,6 @@
       "id": 14
     },
     {
-      "cc": "999999",
-      "name": "vvvvv",
-      "alias": "jjjjjjjjj",
-      "birth_date": "2023-04-18",
-      "district": "vvvvvvvvvvvvvvvv",
-      "address": "ggggggggggg",
-      "balance": 0,
-      "id": 15
-    },
-    {
       "cc": "1234445",
       "name": "Diego Alvarez",
       "alias": "El coste",
@@ -81,6 +71,62 @@
       "address": "como ",
       "balance": 0,
       "id": 18
+    },
+    {
+      "cc": "5656565",
+      "name": "dsdsdsds",
+      "alias": "dsdsdsd",
+      "birth_date": "2023-04-17",
+      "district": "dsdsdsds",
+      "address": "dsdsdsds",
+      "balance": 0,
+      "id": 19
+    },
+    {
+      "cc": "123",
+      "name": "fsfa",
+      "alias": "gsg",
+      "birth_date": "2023-04-04",
+      "district": "gsg",
+      "address": "sgsg",
+      "balance": 0,
+      "id": 20
+    },
+    {
+      "cc": "12444548",
+      "name": "Diego alvarez",
+      "alias": "El coste",
+      "birth_date": "2023-04-11",
+      "district": "Poblado",
+      "address": "la loma",
+      "balance": 0,
+      "id": 21
+    }
+  ],
+  "Pipetas": [
+    {
+      "id": 1,
+      "nombre": "x40 lbs",
+      "Valor": 95000
+    },
+    {
+      "id": 2,
+      "nombre": "x30 lbs",
+      "Valor": 75000
+    },
+    {
+      "id": 3,
+      "nombre": "x100 lbs",
+      "Valor": 220000
+    }
+  ],
+  "Ventas": [
+    {
+      "id": 1,
+      "date": "2023-04-18",
+      "client": 1,
+      "Tipo_pipeta": 1,
+      "cantidad": 2
     }
   ]
 }
