@@ -4,24 +4,50 @@ import { Delete, EditNote } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Table_info = (props) => {
-  const { load_client, toggleDrawer, show_data_client, actionClient, data } =
-    props;
+const Table_sale = () => {
+  
 
-  const delete_client = (id) => {
-    axios
-      .delete(`http://localhost:3001/client/${id}`)
-      .then((res) => {
-        console.log("eliminado existoso");
-        message.info('eliminado existoso');
-        load_client()
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    load_client();
-  },[]);
+  const dataSource = [
+    {
+      "cc": "8595474",
+      "name": "Isabela ",
+      "alias": "Matias",
+      "birth_date": "2023-04-17",
+      "district": "belen",
+      "address": "4 piso",
+      "balance": 0,
+      "id": 22
+    },
+    {
+      "cc": "8595474",
+      "name": "Isabela ",
+      "alias": "Matias",
+      "birth_date": "2023-04-17",
+      "district": "belen",
+      "address": "4 piso",
+      "balance": 0,
+      "id": 22
+    },
+    {
+      "cc": "8595474",
+      "name": "Isabela ",
+      "alias": "Matias",
+      "birth_date": "2023-04-17",
+      "district": "belen",
+      "address": "4 piso",
+      "balance": 0,
+      "id": 22
+    },{
+      "cc": "8595474",
+      "name": "Isabela ",
+      "alias": "Matias",
+      "birth_date": "2023-04-17",
+      "district": "belen",
+      "address": "4 piso",
+      "balance": 0,
+      "id": 22
+    }
+  ];
 
   const columns = [
     {
@@ -94,7 +120,7 @@ const Table_info = (props) => {
     },
   ];
 
-  return <Table columns={columns} dataSource={data} scroll={{ y: 240 }} />;
+  return <Table columns={columns} dataSource={dataSource} scroll={{ y: 240 }} />;
 };
 
-export default Table_info;
+export default Table_sale;
