@@ -9,6 +9,7 @@ import { Form } from "antd";
 const Client = () => {
   const [data, setData] = useState([]);
   const [drawerVisible, setDrawerVisible] = useState(false);
+  const [actionClient, setactionClient ] = useState({description :" ", textButton:" " , add :false, currenid: null})
 
   const [form] = Form.useForm();
 
@@ -38,6 +39,12 @@ const Client = () => {
       balance: record.balance,
     };
 
+    setactionClient(prev=>{
+      return {
+        ...prev,description :"Editar cliente ", textButton:"Guardar " , add : false ,currenid:record.id
+      }
+    })
+
     form.setFieldsValue(client_values);
     toggleDrawer();
   };
@@ -52,6 +59,8 @@ const Client = () => {
     setDrawerVisible(!drawerVisible);
   };
 
+  
+
   return (
     <div>
       <div>
@@ -64,6 +73,8 @@ const Client = () => {
           onClose={toggleDrawer}
           show_data_client={show_data_client}
           form={form}
+          actionClient = {actionClient}
+          setactionClient = {setactionClient}
         />
       </div>
 
@@ -72,6 +83,7 @@ const Client = () => {
           load_client={load_client}
           toggleDrawer={toggleDrawer}
           show_data_client={show_data_client}
+          actionClient = {actionClient}
         />
       </div>
     </div>

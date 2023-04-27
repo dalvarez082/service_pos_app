@@ -39,6 +39,7 @@ const searchResult = (query) =>
 const Search_info = () => {
   const [options, setOptions] = useState([]);
   const handleSearch = (value) => {
+    
     setOptions(value ? searchResult(value) : []);
   };
   const onSelect = (value) => {

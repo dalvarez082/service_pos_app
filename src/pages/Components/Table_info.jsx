@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const Table_info = (props) => {
   const [data, setData] = useState([]);
-  const { load_client, toggleDrawer, show_data_client } = props;
+  const { load_client, toggleDrawer, show_data_client,actionClient } = props;
 
   const delete_client = (id) => {
     axios
@@ -66,7 +66,7 @@ const Table_info = (props) => {
           <Button
             type="primary"
             icon={<EditNote />}
-            onClick={() => show_data_client(record)}
+            onClick={() => {show_data_client(record)}}
           />
 
           <Button

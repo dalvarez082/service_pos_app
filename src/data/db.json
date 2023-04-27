@@ -73,20 +73,10 @@
       "id": 18
     },
     {
-      "cc": "5656565",
-      "name": "dsdsdsds",
-      "alias": "dsdsdsd",
-      "birth_date": "2023-04-17",
-      "district": "dsdsdsds",
-      "address": "dsdsdsds",
-      "balance": 0,
-      "id": 19
-    },
-    {
       "cc": "123",
-      "name": "fsfa",
+      "name": "Joselito carnaval",
       "alias": "gsg",
-      "birth_date": "2023-04-04",
+      "birth_date": "2023-04-12",
       "district": "gsg",
       "address": "sgsg",
       "balance": 0,
@@ -101,6 +91,16 @@
       "address": "la loma",
       "balance": 0,
       "id": 21
+    },
+    {
+      "cc": "8595474",
+      "name": "Isabela ",
+      "alias": "Isa",
+      "birth_date": "2023-04-18",
+      "district": "belen",
+      "address": "2 piso",
+      "balance": 0,
+      "id": 22
     }
   ],
   "Pipetas": [

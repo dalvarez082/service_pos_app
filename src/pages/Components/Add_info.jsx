@@ -15,7 +15,7 @@ import React, { useRef, useEffect } from "react";
 import axios from "axios";
 
 const Add_info = (props) => {
-  const { refresh_client, visible, onClose, form,  fn } = props;
+  const { refresh_client, visible, onClose, form, actionClient,setactionClient} = props;
   const [open, setOpen] = useState(false);
 
   const formRef = React.useRef();
@@ -27,6 +27,11 @@ const Add_info = (props) => {
   const showDrawer = () => {
     setOpen(true);
     onClose();
+    setactionClient(prev=>{
+      return {
+        ...prev,description :"Agregar nuevo cliente  ", textButton:"Agregar" , add : true
+      }
+    })
   };
 
   const handleOnClose = () => {
@@ -50,6 +55,7 @@ const Add_info = (props) => {
         address: values.address,
         balance: 0,
       };
+      
 
       const url = "http://localhost:3001/client";
       axios
@@ -67,15 +73,60 @@ const Add_info = (props) => {
     });
   };
 
+  const update_client = () => {
+    const form = formRef.current;
+
+    console.log("birth_date", birth_date)
+    form.validateFields().then((values) => {
+      const newClient = {
+        cc: values.key,
+        name: values.name,
+        alias: values.alias,
+        birth_date: values.birth_date.format("YYYY-MM-DD"),
+        district: values.district,
+        address: values.address,
+        balance: 0,
+      };
+
+
+      const id = actionClient.currenid
+      const url = "http://localhost:3001/client/";
+      axios
+        .put(url+id, newClient)
+        .then((res) => {
+          console.log("Cliente agregado exitosamente");
+          form.resetFields();
+          console.log(newClient);
+          onClose();
+          refresh_client();
+        })
+        .catch((error) => {
+          console.log("Ha ocurrido un error al agregar el cliente:", error);
+        });
+    });
+  };
+
+
+  const buttonFuncion = ()=>{
+
+    if(actionClient.add){
+      add_client()
+    }else{
+      update_client()
+    }
+
+
+  }
+
   return (
     <>
       <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>
-        Agregar cliente
+        Agregar Cliente
       </Button>
 
       <Drawer
         style={{ borderRadius: "20px" }}
-        title="Agregar cliente nuevo"
+        title={actionClient.description}
         width={720}
         onClose={onClose}
         open={open}
@@ -85,8 +136,8 @@ const Add_info = (props) => {
         extra={
           <Space>
             <Button onClick={handleOnClose}>Cancelar</Button>
-            <Button type="primary" onClick={add_client}>
-              Agregar
+            <Button type="primary" onClick={buttonFuncion}>
+              {actionClient.textButton}
             </Button>
           </Space>
         }
