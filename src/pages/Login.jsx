@@ -14,46 +14,38 @@ const [form] = Form.useForm();
     handleLogin(values);
   };
 
+ 
   const handleLogin = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/users');
-      const data = response.data;
-      const username = form.getFieldValue('username');
-      const password = form.getFieldValue('password');
-      const found = data.find((user) => {
-        return user.name === username && user.password === password;
+      const response = await axios.post('http://localhost:3001/user/login', {
+        user: form.getFieldValue('username'),
+        password: form.getFieldValue('password'),
       });
-
-      if (found) {
-        console.log("inicio de sesion")
-        const user_log =  {
-          id: found.id,
-          name: found.name,
-        };
-       
-        console.log(user_log)
-        const token = jwt.sign(user_log, SECRET);
-        console.log("login: ",token)
+  
+      if (response.status === 200) {
+        const token = response.data.token;
+        console.log("inicio de sesion", token);
         Cookies.set('token', token);
-        window.location.href =('/Dashboard');
-      } 
-
-      else {
+        window.location.href = '/Dashboard';
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 403) {        
         notification.error({
           message: <strong>Error: inicio de sesión</strong>,
           description: 'Lo siento, verifica de nuevo tus datos.',
           placement: 'top',
           duration: 4,
-          icon: <ErrorOutlineOutlined style={{ color: 'red' }}/>,
+          icon: <ErrorOutlineOutlined style={{ color: 'red' }} />,
           closeIcon: null
         });
+      } else {
+        console.error(error);
       }
-    }
-    catch (error) {
-      console.error(error);
     }
   };
   
+  
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };

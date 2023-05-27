@@ -14,7 +14,8 @@ const [firstLetterUser, setFirstLetterUser] = useState('');
     console.log("log:", token);
     if (token) {  
       const decodedToken = jwt_decode(token);
-      const username = decodedToken.name;
+      console.log(decodedToken)
+      const username = decodedToken.nombre;
       console.log("u: ",username),
       setUsername(username)
       const primerLetra = username.charAt(0);

@@ -11,14 +11,21 @@ import {
   notification,
   Space,
 } from "antd";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useState } from "react";
 import React, { useRef, useEffect } from "react";
 import axios from "axios";
 
 const Add_info = (props) => {
-  const { refresh_client, visible, onClose, form, actionClient,setactionClient} = props;
+  const {
+    refresh_client,
+    visible,
+    onClose,
+    form,
+    actionClient,
+    setactionClient,
+  } = props;
   const [open, setOpen] = useState(false);
 
   const formRef = React.useRef();
@@ -30,11 +37,14 @@ const Add_info = (props) => {
   const showDrawer = () => {
     setOpen(true);
     onClose();
-    setactionClient(prev=>{
+    setactionClient((prev) => {
       return {
-        ...prev,description :"Agregar nuevo cliente  ", textButton:"Agregar" , add : true
-      }
-    })
+        ...prev,
+        description: "Agregar nuevo cliente  ",
+        textButton: "Agregar",
+        add: true,
+      };
+    });
   };
 
   const handleOnClose = () => {
@@ -47,7 +57,7 @@ const Add_info = (props) => {
   const add_client = () => {
     const form = formRef.current;
 
-    console.log("birth_date", birth_date)
+    console.log("birth_date", birth_date);
     form.validateFields().then((values) => {
       const newClient = {
         cc: values.key,
@@ -58,7 +68,6 @@ const Add_info = (props) => {
         address: values.address,
         balance: 0,
       };
-      
 
       const url = "http://localhost:3001/client";
       axios
@@ -67,10 +76,10 @@ const Add_info = (props) => {
           console.log("Cliente agregado exitosamente");
           notification.success({
             message: <strong>Cliente agregado exitosamente</strong>,
-            placement: 'top',
+            placement: "top",
             duration: 3,
-            icon: <CheckCircleOutlineIcon style={{ color: 'green' }}/>,
-            closeIcon: null
+            icon: <CheckCircleOutlineIcon style={{ color: "green" }} />,
+            closeIcon: null,
           });
           form.resetFields();
           console.log(newClient);
@@ -86,7 +95,7 @@ const Add_info = (props) => {
   const update_client = () => {
     const form = formRef.current;
 
-    console.log("birth_date", birth_date)
+    console.log("birth_date", birth_date);
     form.validateFields().then((values) => {
       const newClient = {
         cc: values.key,
@@ -98,11 +107,10 @@ const Add_info = (props) => {
         balance: 0,
       };
 
-
-      const id = actionClient.currenid
+      const id = actionClient.currenid;
       const url = "http://localhost:3001/client/";
       axios
-        .put(url+id, newClient)
+        .put(url + id, newClient)
         .then((res) => {
           console.log("Cliente agregado exitosamente");
           form.resetFields();
@@ -116,30 +124,29 @@ const Add_info = (props) => {
     });
   };
 
-
-  const buttonFuncion = ()=>{
-
-    if(actionClient.add){
-      add_client()
-    }else{
-      update_client()
+  const buttonFuncion = () => {
+    if (actionClient.add) {
+      add_client();
+    } else {
+      update_client();
     }
-
-
-  }
+  };
 
   return (
     <>
-      <Button type="primary" onClick={showDrawer} icon={<PersonAddIcon /> }
-        style={{ 
-    fontSize: '16px', 
-    padding: '10px 20px', 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center' 
-  }}
+      <Button
+        type="primary"
+        onClick={showDrawer}
+        icon={<PersonAddIcon />}
+        style={{
+          fontSize: "16px",
+          padding: "10px 20px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-<span style={{ marginLeft: '5px' }}>Agregar Cliente</span>
+        <span style={{ marginLeft: "5px" }}>Agregar Cliente</span>
       </Button>
 
       <Drawer
@@ -160,12 +167,7 @@ const Add_info = (props) => {
           </Space>
         }
       >
-        <Form
-          layout="vertical"
-          hideRequiredMark
-          ref={formRef}
-          form={form}
-        >
+        <Form layout="vertical" hideRequiredMark ref={formRef} form={form}>
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item

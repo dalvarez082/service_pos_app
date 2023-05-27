@@ -2,13 +2,14 @@ import {
   SpaceDashboard,
   Person,
   Store,
+  PropaneTank,
   ShoppingCart,
 } from "@mui/icons-material";
 import { Layout, Menu, theme } from "antd";
 import React from "react";
 import Client from "./Client";
 import Graphics from "./Graphics";
-import Providers from "./Providers";
+import Product from "./Product";
 import Sale from "./Sales";
 import Cookies from "cookies-js";
 import { useEffect } from "react";
@@ -82,17 +83,19 @@ const Dashboard = () => {
                   onClick: () => handleMenuClick("Clientes"),
                 },
                 {
+
+                  key: "Productos",
+                  icon: React.createElement(PropaneTank),
+                  label: "Productos",
+                  onClick: () => handleMenuClick("Productos"),
+                },
+                {
                   key: "Ventas",
                   icon: React.createElement(Store),
                   label: "Ventas",
                   onClick: () => handleMenuClick("Ventas"),
                 },
-                {
-                  key: "Proveedores",
-                  icon: React.createElement(ShoppingCart),
-                  label: "Proveedores",
-                  onClick: () => handleMenuClick("Proveedores"),
-                },
+                
               ]}
             />
           </Sider>
@@ -128,8 +131,9 @@ const Dashboard = () => {
               >
                 {currentPage === "Dashboard" && <Graphics />}
                 {currentPage === "Clientes" && <Client />}
+                {currentPage === "Proveedores" && <Product />}
                 {currentPage === "Ventas" && <Sale />}
-                {currentPage === "Proveedores" && <Providers />}
+                
               </div>
             </Content>
           </Layout>

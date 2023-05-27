@@ -22,7 +22,7 @@ const Table_info = (props) => {
           icon: <CheckCircleOutlineIcon style={{ color: "green" }} />,
           closeIcon: null,
         });
-        load_client().then((clients) => setData(clients));
+        load_client()
       })
       .catch((err) => console.log(err));
   };

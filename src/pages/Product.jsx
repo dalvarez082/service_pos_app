@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Providers = () => {
+const Product = () => {
   return (
     <div style={{
       color : 'black'
@@ -11,4 +11,4 @@ const Providers = () => {
   );
 };
 
-export default Providers;
+export default Product;

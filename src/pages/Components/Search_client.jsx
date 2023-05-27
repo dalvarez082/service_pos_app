@@ -37,7 +37,7 @@ import axios from "axios";
 //       };
 //     });
 
-const Search_info = (props) => {
+const Search_client = (props) => {
   const { search, reset } = props;
   const [options, setOptions] = useState([]);
 
@@ -89,4 +89,4 @@ const Search_info = (props) => {
     </AutoComplete>
   );
 };
-export default Search_info;
+export default Search_client;

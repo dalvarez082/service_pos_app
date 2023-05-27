@@ -7,6 +7,6 @@ import Sale from "./Sales";
 export default function Home() {
   return (
     
-   <Sale></Sale>
+   <Login> </Login>
   );
 }

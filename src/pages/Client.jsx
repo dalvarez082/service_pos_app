@@ -1,11 +1,12 @@
 import React from "react";
-import Table_info from "./Components/Table_info";
-import Search_info from "./Components/Search_info";
-import Add_info from "./Components/Add_info";
+import Table_client from "./Components/Table_client";
+import Search_client from "./Components/Search_client";
+import Add_client from "./Components/Add_client";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Form } from "antd";
-import { Search } from "@mui/icons-material";
+import { Height, Search } from "@mui/icons-material";
+import { Card } from "antd";
 
 const Client = () => {
   const [data, setData] = useState([]);
@@ -33,7 +34,7 @@ const Client = () => {
       console.log(err);
     }
   };
-  
+
   const show_data_client = (record) => {
     // TODO: set correct format date
     const client_values = {
@@ -70,36 +71,36 @@ const Client = () => {
   };
 
   const search = (value) => {
-    console.log(value)
-    axios.get("http://localhost:3001/client").then((data)=>{
-      const list = data.data.filter((item) => item.cc === value);
-      console.log(list)
-      if (list.length >= 1) {
-        setData(list);
-      } else {
-        setData(currentData);
-      }
-    }).catch((error)=>{
-      console.log("Ha ocurrido un error al agregar el cliente:", error);
-    })   
+    console.log(value);
+    axios
+      .get("http://localhost:3001/client")
+      .then((data) => {
+        const list = data.data.filter((item) => item.cc === value);
+        console.log(list);
+        if (list.length >= 1) {
+          setData(list);
+        } else {
+          setData(currentData);
+        }
+      })
+      .catch((error) => {
+        console.log("Ha ocurrido un error al agregar el cliente:", error);
+      });
   };
 
   const reset = () => {
-    setData(currentData)
-  }
+    setData(currentData);
+  };
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Search_info key="search" search={search} reset={reset}/>
 
-        <Add_info
+      <Card style={{
+        height :"15%"
+      }}> 
+        <Search_client key="search" search={search} reset={reset} />
+
+        <Add_client
           key="add"
           refresh_client={refresh_client}
           visible={drawerVisible}
@@ -109,17 +110,26 @@ const Client = () => {
           actionClient={actionClient}
           setactionClient={setactionClient}
         />
-      </div>
+      </Card>
 
-      <div style={{marginTop: '35px'}}>
-        <Table_info
+
+      <Card  style={{
+
+        marginTop : '15px',
+        Height : '75%'
+
+
+
+      }}>
+        <Table_client
           load_client={load_client}
           toggleDrawer={toggleDrawer}
           show_data_client={show_data_client}
           actionClient={actionClient}
           data={data}
         />
-      </div>
+      </Card>
+
     </div>
   );
 };
