@@ -131,7 +131,7 @@ const Dashboard = () => {
               >
                 {currentPage === "Dashboard" && <Graphics />}
                 {currentPage === "Clientes" && <Client />}
-                {currentPage === "Proveedores" && <Product />}
+                {currentPage === "Productos" && <Product />}
                 {currentPage === "Ventas" && <Sale />}
                 
               </div>

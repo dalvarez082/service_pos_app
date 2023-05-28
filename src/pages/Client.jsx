@@ -53,12 +53,13 @@ const Client = () => {
       key: record.cc_client,
       name: record.nombre,
       alias: record.alias_client,
-      // birth_date: record.birth_date,
+      fecha: record.fecha,
       //birth_date: new Date(Date.now()).toLocaleDateString(),
       district: record.barrio,
       address: record.direccion,
       balance: record.saldo,
     };
+    console.log("hola", client_values)
 
     setactionClient((prev) => {
       return {
@@ -73,6 +74,7 @@ const Client = () => {
     form.setFieldsValue(client_values);
     toggleDrawer();
   };
+
 
   const refresh_client = () => {
     load_client();

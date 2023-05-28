@@ -89,6 +89,7 @@ const Table_info = (props) => {
               icon={<EditNote />}
               onClick={() => {
                 show_data_client(record);
+                console.log(record)
               }}
             />
           </Tooltip>
