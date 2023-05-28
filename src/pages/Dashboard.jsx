@@ -10,7 +10,7 @@ import React from "react";
 import Client from "./Client";
 import Graphics from "./Graphics";
 import Product from "./Product";
-import Sale from "./Sales";
+import Sale from "./Sale";
 import Cookies from "cookies-js";
 import { useEffect } from "react";
 import Log_out from "./Components/log_out";
