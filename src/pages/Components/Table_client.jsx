@@ -2,6 +2,7 @@ import React from "react";
 import { Space, Table, Button, Popconfirm, notification, Tooltip } from "antd";
 import { Delete, EditNote } from "@mui/icons-material";
 import axios from "axios";
+import Cookies from 'cookies-js';
 import { useEffect, useState } from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
@@ -11,8 +12,13 @@ const Table_info = (props) => {
     props;
 
   const delete_client = (id) => {
+    const token = Cookies.get('token');
     axios
-      .delete(`http://localhost:3001/client/${id}`)
+      .delete(`http://localhost:3001/client/${id}` , {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      }   )
       .then((res) => {
         console.log("eliminado existoso");
         notification.success({
@@ -34,38 +40,43 @@ const Table_info = (props) => {
   const columns = [
     {
       title: "CC",
-      dataIndex: "cc",
-      key: "cc",
+      dataIndex: "cc_client",
+      key: "cc_client",
     },
     {
       title: "Nombre",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "nombre",
+      key: "nombre",
     },
     {
       title: "Alias",
-      dataIndex: "alias",
-      key: "alias",
+      dataIndex: "alias_client",
+      key: "alias_client",
     },
     {
       title: "Barrio",
-      dataIndex: "district",
-      key: "district",
+      dataIndex: "barrio",
+      key: "barrio",
     },
     {
       title: "Dirección",
-      dataIndex: "address",
-      key: "address",
+      dataIndex: "direccion",
+      key: "direccion",
+    },
+    {
+      title: "Telefono",
+      dataIndex: "telefono",
+      key: "telefono",
     },
     {
       title: "Saldo",
-      dataIndex: "balance",
-      key: "balance",
+      dataIndex: "saldo",
+      key: "saldo",
     },
     {
       title: "Fecha nacimiento",
-      dataIndex: "birth_date",
-      key: "birth_date",
+      dataIndex: "fecha",
+      key: "fecha",
     },
     {
       title: "Acciones",
@@ -89,7 +100,7 @@ const Table_info = (props) => {
               description={
                 <strong>¿Esta seguro que quiere eliminar este cliente?</strong>
               }
-              onConfirm={() => delete_client(record.id)}
+              onConfirm={() => delete_client(record.cc_client)}
               okText="Si"
               cancelText="No"
               icon={

@@ -16,6 +16,8 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useState } from "react";
 import React, { useRef, useEffect } from "react";
 import axios from "axios";
+import Cookies from 'cookies-js';
+import moment from 'moment';
 
 const Add_info = (props) => {
   const {
@@ -57,21 +59,28 @@ const Add_info = (props) => {
   const add_client = () => {
     const form = formRef.current;
 
-    console.log("birth_date", birth_date);
+    
     form.validateFields().then((values) => {
       const newClient = {
-        cc: values.key,
-        name: values.name,
-        alias: values.alias,
-        birth_date: values.birth_date.format("YYYY-MM-DD"),
-        district: values.district,
-        address: values.address,
-        balance: 0,
+        cc_client: values.key,
+        cc_user : "12345",
+        nombre: values.name,        
+        alias_client: values.alias,        
+        fecha: moment(values.birth_date).toISOString(),
+        barrio: values.district,
+        direccion: values.address,
+        saldo: 0,
+        telefono:"3148921123"
       };
-
+      const token = Cookies.get('token');
       const url = "http://localhost:3001/client";
+      console.log(newClient)      
       axios
-        .post(url, newClient)
+        .post(url, newClient, {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        })
         .then((res) => {
           console.log("Cliente agregado exitosamente");
           notification.success({
@@ -94,23 +103,34 @@ const Add_info = (props) => {
 
   const update_client = () => {
     const form = formRef.current;
+    
 
     console.log("birth_date", birth_date);
     form.validateFields().then((values) => {
-      const newClient = {
-        cc: values.key,
-        name: values.name,
-        alias: values.alias,
-        birth_date: values.birth_date.format("YYYY-MM-DD"),
-        district: values.district,
-        address: values.address,
-        balance: 0,
-      };
 
-      const id = actionClient.currenid;
+      const newClient = {
+        cc_client: values.key,
+        cc_user : "12345",
+        nombre: values.name,        
+        alias_client: values.alias,        
+        fecha: moment(values.birth_date).toISOString(),
+        barrio: values.district,
+        direccion: values.address,
+        saldo: 0,
+        telefono:"3148921123"
+      };
+      const token = Cookies.get('token');
+      console.log(newClient)  
+
+      const cc_client = actionClient.currenid;
+      console.log(cc_client)
       const url = "http://localhost:3001/client/";
       axios
-        .put(url + id, newClient)
+        .put(url + cc_client, newClient,{
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        })
         .then((res) => {
           console.log("Cliente agregado exitosamente");
           form.resetFields();

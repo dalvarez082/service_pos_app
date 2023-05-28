@@ -4,9 +4,11 @@ import Search_client from "./Components/Search_client";
 import Add_client from "./Components/Add_client";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Cookies from 'cookies-js';
 import { Form } from "antd";
 import { Height, Search } from "@mui/icons-material";
 import { Card } from "antd";
+
 
 const Client = () => {
   const [data, setData] = useState([]);
@@ -23,10 +25,20 @@ const Client = () => {
 
   const load_client = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/client");
+      const token = Cookies.get('token');
+
+      const res = await axios.get("http://localhost:3001/client", {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+
+
       const clients = res.data.map((client) => ({
+        
         ...client,
-        key: client.cc,
+        key: client.cc_client,
+         fecha: client.fecha ? new Date(client.fecha).toISOString().slice(0, 10) : null,
       }));
       setData(clients);
       setCurrentData(clients);
@@ -38,14 +50,14 @@ const Client = () => {
   const show_data_client = (record) => {
     // TODO: set correct format date
     const client_values = {
-      key: record.cc,
-      name: record.name,
-      alias: record.alias,
+      key: record.cc_client,
+      name: record.nombre,
+      alias: record.alias_client,
       // birth_date: record.birth_date,
       //birth_date: new Date(Date.now()).toLocaleDateString(),
-      district: record.district,
-      address: record.address,
-      balance: record.balance,
+      district: record.barrio,
+      address: record.direccion,
+      balance: record.saldo,
     };
 
     setactionClient((prev) => {
@@ -54,7 +66,7 @@ const Client = () => {
         description: "Editar cliente ",
         textButton: "Guardar ",
         add: false,
-        currenid: record.id,
+        currenid: record.cc_client,
       };
     });
 
