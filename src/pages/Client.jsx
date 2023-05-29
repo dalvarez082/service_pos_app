@@ -119,6 +119,7 @@ const Client = () => {
           }}
         >
           <Search_client key="search" search={search} reset={reset} />
+          
 
           <Add_client
             key="add"

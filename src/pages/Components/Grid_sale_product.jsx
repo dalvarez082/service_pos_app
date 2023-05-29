@@ -30,11 +30,20 @@ const Grid_sale_product = ({ items }) => {
             onClick={() => handleItemClick(item)}
             style={{ cursor: "pointer" }}
           >
+             <Tooltip title="Añadir al carrito " color="#4CAF50" key="edit">
             <Card
               style={{
                 display: "flex",
                 flexDirection: "column",
                 textAlign: "center",
+                transition: "transform 0.3s",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.25)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(0.8)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
               }}
               bodyStyle={{
                 display: "flex",
@@ -45,14 +54,16 @@ const Grid_sale_product = ({ items }) => {
               
               description={item.description}
               actions={[
-                <Tooltip title="Añadir " color="green" key="edit">
-                  <Button type="primary"  icon={<Add />} style={{background:"green"}} />
-                </Tooltip>,
+                // <Tooltip title="Añadir " color="green" key="edit">
+                //   <Button type="primary"  icon={<Add />} style={{background:"green"}} />
+                // </Tooltip>,
               ]}
             >
+              
               <img alt="example" src={item.image} />
               <div style={{ marginTop: "8px" }}>{item.precio}</div>
             </Card>
+            </Tooltip>,
           </div>
         ))}
       </div>
