@@ -2,11 +2,10 @@ import React from "react";
 import Table_client from "./Components/Table_client";
 import Search_client from "./Components/Search_client";
 import Add_client from "./Components/Add_client";
-import { useEffect, useState, useRef } from "react";
+import { useState} from "react";
 import axios from "axios";
 import Cookies from 'cookies-js';
 import { Form } from "antd";
-import { Height, Search } from "@mui/icons-material";
 import { Card } from "antd";
 
 
@@ -38,7 +37,7 @@ const Client = () => {
         
         ...client,
         key: client.cc_client,
-         fecha: client.fecha ? new Date(client.fecha).toISOString().slice(0, 10) : null,
+        fecha: client.fecha ? new Date(client.fecha).toISOString().slice(0, 10) : null,
       }));
       setData(clients);
       setCurrentData(clients);

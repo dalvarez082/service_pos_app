@@ -1,4 +1,3 @@
-import { Search } from "@mui/icons-material";
 import { AutoComplete, Input } from "antd";
 import { useState } from "react";
 import axios from "axios";
