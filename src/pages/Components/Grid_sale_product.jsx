@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import { Card, Button, Tooltip } from "antd";
-import { Delete, EditNote } from "@mui/icons-material";
+import { Card, Button, Tooltip  } from "antd";
+import {  Add } from "@mui/icons-material";
 
 const Grid_sale_product = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -12,7 +12,9 @@ const Grid_sale_product = ({ items }) => {
   };
 
   return (
+
     <div style={{ height: "490px", maxHeight: "100vh", overflow: "auto" }}>
+        
       <div
         style={{
           display: "grid",
@@ -40,18 +42,11 @@ const Grid_sale_product = ({ items }) => {
                 alignItems: "center",
               }}
               title={item.nombre}
-              extra={[
-                <div key="clear" style={{ marginLeft: "auto" }}>
-                  <Tooltip title="Eliminar" color="red" key="eliminar">
-                  <Button type="text" icon={<Delete />} />
-                  </Tooltip>
-                  
-                </div>,
-              ]}
+              
               description={item.description}
               actions={[
-                <Tooltip title="Editar" color="cyan" key="edit">
-                  <Button type="primary" icon={<EditNote />}  />
+                <Tooltip title="Añadir " color="green" key="edit">
+                  <Button type="primary"  icon={<Add />} style={{background:"green"}} />
                 </Tooltip>,
               ]}
             >

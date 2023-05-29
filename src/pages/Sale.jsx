@@ -4,7 +4,7 @@ import Sale_sale from "./Sale_sale";
 import List_sale from "./List_sale";
 
 const Sale = () => {
-  const [currentPage, setCurrentPage] = React.useState("Sale");
+  const [currentPage, setCurrentPage] = React.useState("Sale_sale");
 
   const handleBreadcrumbClick = (page) => {
     setCurrentPage(page);
