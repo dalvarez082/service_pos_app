@@ -19,7 +19,7 @@ import axios from "axios";
 import Cookies from 'cookies-js';
 import moment from 'moment';
 
-const Add_info = (props) => {
+const Add_client = (props) => {
   const {
     refresh_client,
     visible,
@@ -103,9 +103,6 @@ const Add_info = (props) => {
 
   const update_client = () => {
     const form = formRef.current;
-    
-
-    console.log("birth_date", birth_date);
     form.validateFields().then((values) => {
 
       const newClient = {
@@ -316,4 +313,4 @@ const Add_info = (props) => {
     </>
   );
 };
-export default Add_info;
+export default Add_client;

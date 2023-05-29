@@ -3,7 +3,7 @@ import { Card, FloatButton } from "antd";
 import { colors } from "@mui/material";
 import Grid_sale_product from "./Components/Grid_sale_product";
 import { ShoppingCart } from "@mui/icons-material";
-import Add_product from "./Components/Add_product";
+import Add_shopping from "./Components/Add_shopping";
 
 const List_sale = () => {
   const items = [
@@ -86,7 +86,7 @@ const List_sale = () => {
            
           }}
         >
-          <Add_product></Add_product>
+          <Add_shopping></Add_shopping>
 
         </div>
       </Card>

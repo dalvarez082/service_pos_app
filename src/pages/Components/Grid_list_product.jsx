@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Card, Button, Tooltip, Popconfirm } from "antd";
 import { Delete, EditNote ,ErrorOutline} from "@mui/icons-material";
-import Edit_product from "./Edit_product";
+import Add_product from "./Add_product";
 
 const Grid_list_product = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -64,7 +64,7 @@ const Grid_list_product = ({ items }) => {
                 </div>,
               ]}
               description={item.description}
-              actions={[<Edit_product key="Edit"></Edit_product>]}
+              actions={[<Add_product key="Edit"></Add_product>]}
             >
               <img alt="example" src={item.image} />
               <div style={{ marginTop: "8px" }}>{item.precio}</div>

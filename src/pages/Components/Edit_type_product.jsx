@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, Tooltip } from "antd";
 import { Delete, EditNote } from "@mui/icons-material";
 
-const Edit_product = () => {
+const Edit_type_product = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -37,4 +37,4 @@ const Edit_product = () => {
   );
 };
 
-export default Edit_product;
+export default Edit_type_product;
