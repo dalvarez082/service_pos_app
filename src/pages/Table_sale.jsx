@@ -18,12 +18,14 @@ const Table_sale = () => {
         height: "100%",
         backgroundColor: "white",
       }}>
-      <Card
+      <Card bordered={false}
         style={{
           height: "20%",
-          margin: "5px"
+          margin: "5px",
+          marginBottom: "15px",
+          backgroundColor: "#F5F5F5"
         }}>
-            <Search_sale style={{}}></Search_sale>
+            <Search_sale ></Search_sale>
       </Card>
 
       <Card

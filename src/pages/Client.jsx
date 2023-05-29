@@ -2,12 +2,11 @@ import React from "react";
 import Table_client from "./Components/Table_client";
 import Search_client from "./Components/Search_client";
 import Add_client from "./Components/Add_client";
-import { useState} from "react";
+import { useState } from "react";
 import axios from "axios";
-import Cookies from 'cookies-js';
+import Cookies from "cookies-js";
 import { Form } from "antd";
 import { Card } from "antd";
-
 
 const Client = () => {
   const [data, setData] = useState([]);
@@ -24,20 +23,20 @@ const Client = () => {
 
   const load_client = async () => {
     try {
-      const token = Cookies.get('token');
+      const token = Cookies.get("token");
 
       const res = await axios.get("http://localhost:3001/client", {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
       });
 
-
       const clients = res.data.map((client) => ({
-        
         ...client,
         key: client.cc_client,
-        fecha: client.fecha ? new Date(client.fecha).toISOString().slice(0, 10) : null,
+        fecha: client.fecha
+          ? new Date(client.fecha).toISOString().slice(0, 10)
+          : null,
       }));
       setData(clients);
       setCurrentData(clients);
@@ -58,7 +57,7 @@ const Client = () => {
       address: record.direccion,
       balance: record.saldo,
     };
-    console.log("hola", client_values)
+    console.log("hola", client_values);
 
     setactionClient((prev) => {
       return {
@@ -73,7 +72,6 @@ const Client = () => {
     form.setFieldsValue(client_values);
     toggleDrawer();
   };
-
 
   const refresh_client = () => {
     load_client();
@@ -107,33 +105,40 @@ const Client = () => {
 
   return (
     <div>
+      <Card bordered={false}
+        style={{
+          height: "15%",
+          backgroundColor: "#F5F5F5"
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+          }}
+        >
+          <Search_client key="search" search={search} reset={reset} />
 
-      <Card style={{
-        height :"15%"
-      }}> 
-        <Search_client key="search" search={search} reset={reset} />
-
-        <Add_client
-          key="add"
-          refresh_client={refresh_client}
-          visible={drawerVisible}
-          onClose={toggleDrawer}
-          show_data_client={show_data_client}
-          form={form}
-          actionClient={actionClient}
-          setactionClient={setactionClient}
-        />
+          <Add_client
+            key="add"
+            refresh_client={refresh_client}
+            visible={drawerVisible}
+            onClose={toggleDrawer}
+            show_data_client={show_data_client}
+            form={form}
+            actionClient={actionClient}
+            setactionClient={setactionClient}
+          />
+        </div>
       </Card>
 
-
-      <Card  style={{
-
-        marginTop : '15px',
-        Height : '75%'
-
-
-
-      }}>
+      <Card
+        style={{
+          marginTop: "15px",
+          Height: "75%",
+        }}
+      >
         <Table_client
           load_client={load_client}
           toggleDrawer={toggleDrawer}
@@ -142,7 +147,6 @@ const Client = () => {
           data={data}
         />
       </Card>
-
     </div>
   );
 };
