@@ -10,19 +10,36 @@ const Product = () => {
     setCurrentPage(page);
   };
 
+
+  const handleMouseEnter = (e) => {
+    e.target.style.cursor = 'pointer';
+    e.target.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.3)';
+    e.target.style.padding = '3px';
+    e.target.style.borderRadius = '5px';
+  };
+
+  const handleMouseLeave = (e) => {
+    e.target.style.cursor = 'default';
+    e.target.style.boxShadow = 'none';
+  };
+
   return (
     <>
-      <div style={{ height: "5%" }}>
+      <div style={{ height: "5%"  }}>
         <Breadcrumb>
           <Breadcrumb.Item
             key="List_product"
             onClick={() => handleBreadcrumbClick("List_product")}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             Lista productos
           </Breadcrumb.Item>
           <Breadcrumb.Item
             key="Type_product"
             onClick={() => handleBreadcrumbClick("Type_product")}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             Tipo productos
           </Breadcrumb.Item>
