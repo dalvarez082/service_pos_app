@@ -4,7 +4,7 @@ import List_product from "./List_product";
 import Type_product from "./Type_product";
 
 const Product = () => {
-  const [currentPage, setCurrentPage] = React.useState("Product");
+  const [currentPage, setCurrentPage] = React.useState("List_product");
 
   const handleBreadcrumbClick = (page) => {
     setCurrentPage(page);
@@ -14,10 +14,16 @@ const Product = () => {
     <>
       <div style={{ height: "5%" }}>
         <Breadcrumb>
-          <Breadcrumb.Item key="List_product" onClick={() => handleBreadcrumbClick("List_product")}>
+          <Breadcrumb.Item
+            key="List_product"
+            onClick={() => handleBreadcrumbClick("List_product")}
+          >
             Lista productos
           </Breadcrumb.Item>
-          <Breadcrumb.Item key="Type_product" onClick={() => handleBreadcrumbClick("Type_product")}>
+          <Breadcrumb.Item
+            key="Type_product"
+            onClick={() => handleBreadcrumbClick("Type_product")}
+          >
             Tipo productos
           </Breadcrumb.Item>
         </Breadcrumb>
