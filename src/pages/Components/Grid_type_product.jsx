@@ -1,15 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import { Card, Button, Tooltip } from "antd";
+import { Card, Button, Tooltip, Col, Row } from "antd";
 import { Delete, EditNote } from "@mui/icons-material";
 
-const Grid_list_product = ({ items }) => {
+const Grid_type_product = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
-    console.log(item.title);
   };
+
+  const { Meta } = Card;
 
   return (
     <div style={{ height: "490px", maxHeight: "100vh", overflow: "auto" }}>
@@ -43,20 +44,29 @@ const Grid_list_product = ({ items }) => {
               extra={[
                 <div key="clear" style={{ marginLeft: "auto" }}>
                   <Tooltip title="Eliminar" color="red" key="eliminar">
-                  <Button type="text" icon={<Delete />} />
+                    <Button type="text" icon={<Delete />} />
                   </Tooltip>
-                  
                 </div>,
               ]}
-              description={item.description}
               actions={[
                 <Tooltip title="Editar" color="cyan" key="edit">
-                  <Button type="primary" icon={<EditNote />}  />
+                  <Button type="primary" icon={<EditNote />} />
                 </Tooltip>,
               ]}
             >
-              <img alt="example" src={item.image} />
-              <div style={{ marginTop: "8px" }}>{item.precio}</div>
+              <div
+                style={{
+                  maxHeight: "150px",
+                  maxWidth: "250px",
+                  overflowY: "auto",
+                  overflowX: "auto",
+
+                }}
+              >
+                <Meta
+                  description={item.description}
+                />
+              </div>
             </Card>
           </div>
         ))}
@@ -65,4 +75,4 @@ const Grid_list_product = ({ items }) => {
   );
 };
 
-export default Grid_list_product;
+export default Grid_type_product;

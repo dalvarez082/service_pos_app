@@ -21,18 +21,20 @@ const List_product = () => {
       ];
 
   return (
-    <>
+    <div  style={{backgroundColor:"white"}}>
 
-        <Card style={{
-            height : "10%",
-            background : "red"
+        <Card bordered={false} style={{
+            height : "15%",
+            backgroundColor: "#F5F5F5",
+            marginBottom: "20px",
+            margin: "5px"
         }}>
             
         </Card >
 
         <Card style={{
-            height:"90%",
-            
+            height:"75%",
+            margin: "5px"
         }}>
 
             <Grid_list_product items={items}/>
@@ -43,7 +45,7 @@ const List_product = () => {
 
 
     
-    </>
+  </div>
   );
 };
 
