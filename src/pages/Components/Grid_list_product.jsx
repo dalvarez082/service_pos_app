@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import { Card, Button, Tooltip } from "antd";
-import { Delete, EditNote } from "@mui/icons-material";
+import { Card, Button, Tooltip, Popconfirm } from "antd";
+import { Delete, EditNote ,ErrorOutline} from "@mui/icons-material";
+import Edit_product from "./Edit_product";
 
 const Grid_list_product = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -43,17 +44,26 @@ const Grid_list_product = ({ items }) => {
               extra={[
                 <div key="clear" style={{ marginLeft: "auto" }}>
                   <Tooltip title="Eliminar" color="red" key="eliminar">
-                  <Button type="text" icon={<Delete />} />
+                    <Popconfirm
+                      title={<strong style={{ fontSize: "18px" }}>Confirmación</strong>}
+                      description={
+                        <strong>¿Esta seguro que quiere eliminar este producto?</strong>
+                      }
+                      okText="Yes"
+                      cancelText="No"
+                      icon={
+                        <ErrorOutline
+                          style={{ color: "#FFD700", fontSize: "30px" }}
+                        />
+                      }
+                    >
+                      <Button type="text" icon={<Delete />} />
+                    </Popconfirm>
                   </Tooltip>
-                  
                 </div>,
               ]}
               description={item.description}
-              actions={[
-                <Tooltip title="Editar" color="cyan" key="edit">
-                  <Button type="primary" icon={<EditNote />}  />
-                </Tooltip>,
-              ]}
+              actions={[<Edit_product key="Edit"></Edit_product>]}
             >
               <img alt="example" src={item.image} />
               <div style={{ marginTop: "8px" }}>{item.precio}</div>
