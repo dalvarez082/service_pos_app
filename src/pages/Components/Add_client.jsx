@@ -131,7 +131,6 @@ const Add_client = (props) => {
         .then((res) => {
           console.log("Cliente agregado exitosamente");
           form.resetFields();
-          console.log(newClient);
           onClose();
           refresh_client();
         })
