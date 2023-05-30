@@ -8,7 +8,7 @@ import { Form } from "antd";
 import { Card } from "antd";
 
 
-const Table_sale = () => {
+const List_sale = () => {
 
   
 
@@ -40,4 +40,4 @@ const Table_sale = () => {
   );
 };
 
-export default Table_sale;
+export default List_sale;

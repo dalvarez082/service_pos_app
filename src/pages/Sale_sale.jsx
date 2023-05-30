@@ -68,34 +68,52 @@ const List_sale = () => {
   ];
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column", backgroundColor:"white"}}>
-      <Card
+    <div
+      style={{
+        backgroundColor: "white",
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
+      <di
         style={{
-          height: "15%",
+          flex: "0 0 15%",
           backgroundColor: "#F5F5F5",
-          marginBottom: "10px",
-          paddingRight: "15px",
+          marginBottom: "20px",
+          margin: "5px",
         }}
       >
-        <div
+        <Card
+          bordered={false}
           style={{
-            display: "flex",
-           // justifyContent: "space-between", ahora lo uso
-           justifyContent: "flex-end",
-            alignItems: "flex-end",
-           
+            height: "100%",
+            backgroundColor: "#F5F5F5",
           }}
         >
-          <Add_shopping></Add_shopping>
+          <div
+            style={{
+              display: "flex",
+              // justifyContent: "space-between", ahora lo uso
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+            }}
+          >
+            <Add_shopping></Add_shopping>
+          </div>
+        </Card>
+      </di>
 
-        </div>
-      </Card>
 
-      <div style={{ flex: 1, display: "flex", position: "relative" }}>
-        <Card style={{ height: "98%", width: "100%" }}>
-          <Grid_sale_product items={items} />
+      <div style={{ flex: "1 1 auto", margin: "5px" }}>
+        <Card style={{ height: "100%" }}>
+        <Grid_sale_product items={items} />
+       
+
         </Card>
       </div>
+
+
     </div>
   );
 };
