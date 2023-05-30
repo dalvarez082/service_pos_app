@@ -148,7 +148,6 @@ const Add_product = ({load_product}) => {
 
   const add_product = (values) => {
     const form = formRef.current;
-      console.log("values: ",values.imagen);
       const newProduct = {
 
         id_type: values.tipo,
@@ -187,7 +186,12 @@ const Add_product = ({load_product}) => {
 
 
 
-  
+
+
+
+
+
+
   return (
     <>
       <Modal
