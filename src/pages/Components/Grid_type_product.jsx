@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Card, Button, Tooltip, Col, Row ,Popconfirm} from "antd";
 import { Delete, EditNote ,ErrorOutline} from "@mui/icons-material";
-import Edit_type_product from "./Edit_type_product";
+import Edit_type_product from "./Edit_type_product"; //// linea para verificar 
 import Cookies from "cookies-js";
 import axios from "axios";
 
@@ -90,7 +90,10 @@ const Grid_type_product = ({ items , load_type_product }) => {
               ]}
               actions={[
                 <Tooltip title="Editar" color="cyan" key="edit">
-                  <Edit_type_product></Edit_type_product>
+                  <Edit_type_product item={item}
+                  load_type_product={load_type_product}
+                  
+                  ></Edit_type_product>
                 </Tooltip>,
               ]}
             >

@@ -1,34 +1,54 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Button, Modal, Tooltip, TextArea, Input, notification} from "antd";
-import { Delete, EditNote } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
 import Cookies from "cookies-js";
-import Form from "antd/es/form/Form";
+import axios from "axios";
+import ImgCrop from "antd-img-crop";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-const Edit_type_product = ({load_type_product, item}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentType, setCurrentType] = useState(false);
+import AddIcon from "@mui/icons-material/Add";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Col,
+  Select,
+  Space,
+  Upload,
+  notification, Tooltip
 
+} from "antd";
+
+
+const Add_type_product = ({load_type_product}) => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const formRef = React.useRef();
+  
 
   const showModal = () => {
     setIsModalOpen(true);
-    //setCurrentType(item)
-    const form = formRef.current;
-    form.setFieldsValue(item);
-
-
   };
 
-  const handleOk = (values) => {
+  const handleOk = () => {
     const form = formRef.current;
     form
       .validateFields()
       .then((values) => {
         console.log(values)
-        update_type_product(values)
+        add_type_product(values);
         form.resetFields();
         setIsModalOpen(false);
       })
+      .catch((error) => {
+        console.log("Error en el formulario:", error);
+      });
+
+
+
+
+    setIsModalOpen(false);
+
   };
 
   const handleCancel = () => {
@@ -36,10 +56,9 @@ const Edit_type_product = ({load_type_product, item}) => {
   };
 
   const { TextArea } = Input;
-  const formRef = React.useRef();
 
 
-  const update_type_product = (values) => {
+  const add_type_product = (values) => {
     const form = formRef.current;
     console.log(values)
       const newType_product= {
@@ -51,18 +70,18 @@ const Edit_type_product = ({load_type_product, item}) => {
       console.log(values)
 
       const token = Cookies.get('token');
-      const url = "http://localhost:3001/typeProduct/"+item.id_type;
+      const url = "http://localhost:3001/typeProduct";
       console.log(newType_product)      
       axios
-        .put(url, newType_product, {
+        .post(url, newType_product, {
           headers: {
             Authorization: `Bearer ${token}`, 
           },
         })
         .then((res) => {
-          console.log("Tipo producto editado exitosamente");
+          console.log("Tipo producto agregado exitosamente");
           notification.success({
-            message: <strong>Tipo producto editado exitosamente</strong>,
+            message: <strong>Tipo producto agregado exitosamente</strong>,
             placement: "top",
             duration: 3,
             icon: <CheckCircleOutlineIcon style={{ color: "green" }} />,
@@ -79,17 +98,24 @@ const Edit_type_product = ({load_type_product, item}) => {
 
   return (
     <>
-      <Tooltip title="Editar" color="cyan" key="edit">
-        <Button type="primary" onClick={()=>showModal()} icon={<EditNote />} />
+      <Tooltip title="Agregar" color="cyan" key="Agregar">
+        <Button type="primary" onClick={showModal} icon={<AddIcon />} >
+            Agregar tipo de producto 
+        </Button>
+
       </Tooltip>
       <Modal
-        title="Editar tipo producto"
+        title="agregar tipo"
         centered
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        
       >
-        <Form ref={formRef}>
+        <Form  
+        ref={formRef}
+        
+        >
           <Form.Item label="Nombre" name="nombre">
           <Input placeholder="Ingrese el nombre del tipo" />
           </Form.Item>
@@ -108,4 +134,4 @@ const Edit_type_product = ({load_type_product, item}) => {
   );
 };
 
-export default Edit_type_product;
+export default Add_type_product;

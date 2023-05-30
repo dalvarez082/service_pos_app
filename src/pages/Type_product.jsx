@@ -2,6 +2,7 @@ import React , {useEffect,useState} from "react";
 import { Card } from 'antd';
 import { colors } from "@mui/material";
 import Grid_type_product from "./Components/Grid_type_product";
+import Add_type_product from "./Components/Add_type_product";
 import Cookies from "cookies-js";
 import axios from "axios";
 
@@ -62,6 +63,12 @@ return (
         marginBottom: "20px",
         margin: "5px",
     }}>
+
+      <Add_type_product  load_type_product={load_type_product}>
+
+      </Add_type_product>
+
+
         
     </Card >
 
