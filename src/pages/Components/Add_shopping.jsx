@@ -7,7 +7,7 @@ import List_sale_product from "./List_sale_product";
 
 
 
-const Add_shopping = () => {
+const Add_shopping = ({count,data}) => {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -85,7 +85,7 @@ const Add_shopping = () => {
             e.currentTarget.style.transform = "scale(1)";
           }}
         ></Button>
-        <Badge count={5} color="#00FF00" offset={[40, -60]}></Badge>
+        <Badge count={count} color="#00FF00" offset={[40, -60]}></Badge>
       </div>
       <Drawer
         title="Orden en curso "
@@ -103,7 +103,7 @@ const Add_shopping = () => {
             span: 16,
           }}
         >
-          <List_sale_product></List_sale_product>
+          <List_sale_product data={data}></List_sale_product>
 
           <Card
             style={{

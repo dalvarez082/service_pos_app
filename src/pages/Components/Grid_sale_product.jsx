@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { Card, Button, Tooltip } from "antd";
 import { Add } from "@mui/icons-material";
 
-const Grid_sale_product = ({ items }) => {
+const Grid_sale_product = ({ items , addProduct }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleItemClick = (item) => {
     setSelectedItem(item);
-    console.log(item.title);
+    
+    addProduct(item)
   };
 
   return (

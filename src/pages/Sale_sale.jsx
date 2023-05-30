@@ -13,10 +13,26 @@ const List_sale = () => {
 
 
   const [items , setItems] = useState([]);
+  const [shopping , setShopping] = useState({count:0,products:[]});
+  
+
 
   useEffect(()=>{
     load_product()
   },[])
+
+  const addProduct =(product)=>{
+
+    setShopping((prev)=>{
+      return{
+        count: prev.count +1 ,
+        products :[...prev.products,product] 
+      }
+
+    })
+
+    console.log(product)
+  }
 
 
   const load_product =async ()=>{
@@ -82,7 +98,7 @@ const List_sale = () => {
               alignItems: "flex-end",
             }}
           >
-            <Add_shopping></Add_shopping>
+            <Add_shopping count={shopping.count} data={shopping.products}></Add_shopping>
           </div>
         </Card>
       </di>
@@ -90,7 +106,7 @@ const List_sale = () => {
 
       <div style={{ flex: "1 1 auto", margin: "5px" }}>
         <Card style={{ height: "100%" }}>
-        <Grid_sale_product items={items} />
+        <Grid_sale_product items={items} addProduct = {addProduct} />
        
 
         </Card>

@@ -2,44 +2,13 @@ import { Avatar, List, message } from "antd";
 import VirtualList from "rc-virtual-list";
 import { useEffect, useState } from "react";
 
-
 const ContainerHeight = 270;
 
-const List_sale_product = () => {
-
-
-  const [data, setData] = useState([]);
-
-  ///////////////////////
-  //data
-
-  const fakeDataUrl =
-  "https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo";
-
-  const appendData = () => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((body) => {
-        setData(data.concat(body.results));
-        message.success(`${body.results.length} more items loaded!`);
-      });
-  };
-
-
-  useEffect(() => {
-    appendData();
-  }, []);
-
-
+const List_sale_product = ({ data }) => {
   const onScroll = (e) => {
-    if (
-      e.currentTarget.scrollHeight - e.currentTarget.scrollTop ===
-      ContainerHeight
-    ) {
-      appendData();
-    }
+    e.currentTarget.scrollHeight - e.currentTarget.scrollTop ===
+      ContainerHeight;
   };
-
 
   return (
     <List>
@@ -47,15 +16,15 @@ const List_sale_product = () => {
         data={data}
         height={ContainerHeight}
         itemHeight={47}
-        itemKey="email"
+        itemKey="id_product"
         onScroll={onScroll}
       >
         {(item) => (
-          <List.Item key={item.email}>
+          <List.Item key={item.id_product}>
             <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name.last}</a>}
-              description={item.email}
+              avatar={<Avatar src={item.imagen} />}
+              title={<a href="https://ant.design">{item.nombre}</a>}
+              description={item.precio}
             />
             <div>Content</div>
           </List.Item>
