@@ -29,6 +29,7 @@ const List_product = () => {
       }));   
       
       setItems(products)
+      console.log("product: ",products);
 
 
 

@@ -15,6 +15,7 @@ import {
   Select,
   Space,
   Upload,
+  notification
 
 } from "antd";
 
@@ -23,6 +24,8 @@ const Add_product = ({load_product}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [option, setOption] = useState(false);
+  const [urlImg, setUrl] = useState("");
+
 
   const formRef = React.useRef();
   const uploadRef = React.useRef();
@@ -81,17 +84,6 @@ const Add_product = ({load_product}) => {
   };
 
 
-  // const options = [
-  //   {
-  //     value: "zhejiang",
-  //     label: "Zhejiang",
-  //   },
-  //   {
-  //     value: "camila",
-  //     label: "camila",
-  //   },
-  // ];
-
   const { TextArea } = Input;
 
   const onChange = (value) => {
@@ -124,6 +116,31 @@ const Add_product = ({load_product}) => {
     imgWindow?.document.write(image.outerHTML);
   };
 
+  const beforeUpload  = async (file) => {
+    const cloudName="drrbzxlpc"
+    console.log("file: ",file);
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+    formData.append("upload_preset", "k94bnc56");
+
+    const apiUrl = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+    const request = await fetch(apiUrl, {
+      method: "POST",
+      body: formData,
+    });
+    const data = await request.json();
+    setUrl(data.secure_url)
+    
+
+
+
+
+
+  }
+
 
 
   //////////////////////////////////(      AÑADIR PRODUCTO      )////////////////////////////////////////
@@ -131,14 +148,14 @@ const Add_product = ({load_product}) => {
 
   const add_product = (values) => {
     const form = formRef.current;
-      console.log("values: ",values);
+      console.log("values: ",values.imagen);
       const newProduct = {
 
         id_type: values.tipo,
         cc_user : "12345",
         nombre: values.nombre, 
         precio: +values.precio,
-        imagen:"hola",
+        imagen:urlImg,
         descripcion: values.descripcion       
       };
       const token = Cookies.get('token');
@@ -160,8 +177,6 @@ const Add_product = ({load_product}) => {
             closeIcon: null,
           });
           form.resetFields();
-          console.log(newClient);
-          onClose();
           load_product();
         })
         .catch((error) => {
@@ -170,6 +185,9 @@ const Add_product = ({load_product}) => {
 
   };
 
+
+
+  
   return (
     <>
       <Modal
@@ -192,6 +210,7 @@ const Add_product = ({load_product}) => {
                     ref={uploadRef}
                     onChange={onChangeImg}
                     onPreview={onPreview}
+                    beforeUpload={beforeUpload}
                   >
                     {fileList.length < 1 && "+ Subir"}
                   </Upload>
