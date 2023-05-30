@@ -8,96 +8,68 @@ import Cookies from "cookies-js";
 
 
 const List_sale = () => {
-  // const items = [
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
+  const items = [
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
+    {
+      id: 1,
+      nombre: "Producto 1",
+      precio: "43500",
+      image:
+        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+    },
 
-  //   // Agrega más elementos según sea necesario
-  // ];
+    // Agrega más elementos según sea necesario
+  ];
 
-  useEffect(()=>{
-    load_product()
-  })
-
-  const load_product =async ()=>{
-    const token = Cookies.get("token");
-    try {
-
-      const res = await axios.get("http://localhost:3001/product", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const products = res.data.map((product) => ({
-        ...product,
-        key: product.id_product,        
-      }));
-
-
-
-      
-    } catch (error) {
-      console.log(err);
-      
-    }
-
-
-  }
+ 
 
   return (
     <div
