@@ -2,14 +2,20 @@ import { Avatar, List, message } from "antd";
 import VirtualList from "rc-virtual-list";
 import { useEffect, useState } from "react";
 
-const fakeDataUrl =
-  "https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo";
+
 const ContainerHeight = 270;
 
 const List_sale_product = () => {
 
 
   const [data, setData] = useState([]);
+
+  ///////////////////////
+  //data
+
+  const fakeDataUrl =
+  "https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo";
+
   const appendData = () => {
     fetch(fakeDataUrl)
       .then((res) => res.json())
@@ -18,9 +24,13 @@ const List_sale_product = () => {
         message.success(`${body.results.length} more items loaded!`);
       });
   };
+
+
   useEffect(() => {
     appendData();
   }, []);
+
+
   const onScroll = (e) => {
     if (
       e.currentTarget.scrollHeight - e.currentTarget.scrollTop ===
@@ -29,6 +39,8 @@ const List_sale_product = () => {
       appendData();
     }
   };
+
+
   return (
     <List>
       <VirtualList

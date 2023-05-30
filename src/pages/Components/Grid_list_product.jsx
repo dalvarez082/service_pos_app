@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { Card, Button, Tooltip, Popconfirm } from "antd";
-import { Delete, EditNote ,ErrorOutline} from "@mui/icons-material";
+import { Delete, EditNote, ErrorOutline } from "@mui/icons-material";
 import Add_product from "./Add_product";
 
 const Grid_list_product = ({ items }) => {
@@ -13,7 +13,14 @@ const Grid_list_product = ({ items }) => {
   };
 
   return (
-    <div style={{ height: "490px", maxHeight: "100vh", overflow: "auto" }}>
+    <div
+      style={{
+        height: "100%",
+        overflowY: "auto",
+        scrollbarWidth: "thin",
+        scrollbarColor: "black",
+      }}
+    >
       <div
         style={{
           display: "grid",
@@ -21,6 +28,8 @@ const Grid_list_product = ({ items }) => {
           gap: "16px",
           padding: "16px",
           paddingBottom: "100px",
+          maxHeight: "400px",
+          overflowY: "scroll",
         }}
       >
         {items.map((item) => (
@@ -46,9 +55,15 @@ const Grid_list_product = ({ items }) => {
                 <div key="clear" style={{ marginLeft: "auto" }}>
                   <Tooltip title="Eliminar" color="red" key="eliminar">
                     <Popconfirm
-                      title={<strong style={{ fontSize: "18px" }}>Confirmación</strong>}
+                      title={
+                        <strong style={{ fontSize: "18px" }}>
+                          Confirmación
+                        </strong>
+                      }
                       description={
-                        <strong>¿Esta seguro que quiere eliminar este producto?</strong>
+                        <strong>
+                          ¿Está seguro que quiere eliminar este producto?
+                        </strong>
                       }
                       okText="Yes"
                       cancelText="No"
