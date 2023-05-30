@@ -1,70 +1,109 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import { Card } from "antd";
 import { colors } from "@mui/material";
 import Grid_list_product from "./Components/Grid_list_product";
 import Add_product from "./Components/Add_product";
+import Cookies from "cookies-js";
+import axios from "axios";
 
 const List_product = () => {
-  const items = [
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
-    {
-      id: 1,
-      nombre: "Producto 1",
-      precio: "43500",
-      image:
-        "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    },
+  // const items = [
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
+  //   {
+  //     id: 1,
+  //     nombre: "Producto 1",
+  //     precio: "43500",
+  //     image:
+  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
+  //   },
 
-    // Agrega más elementos según sea necesario
-  ];
+  //   // Agrega más elementos según sea necesario
+  // ];
+
+  const [items , setItems] = useState([]);
+
+  useEffect(()=>{
+    load_product()
+  },[])
+
+  const load_product =async ()=>{
+    const token = Cookies.get("token");
+    try {
+
+      const res = await axios.get("http://localhost:3001/product", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const products = res.data.map((product) => ({
+        ...product,
+        id: product.id_product,        
+      }));   
+      
+      setItems(products)
+
+
+
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+
+  }
+
+
+
 
   return (
     <div

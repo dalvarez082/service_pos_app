@@ -69,6 +69,7 @@ const List_sale = () => {
     // Agrega más elementos según sea necesario
   ];
 
+ 
 
   return (
     <div

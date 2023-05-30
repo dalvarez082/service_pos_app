@@ -86,7 +86,7 @@ const Grid_list_product = ({ items }) => {
       </Tooltip>
               ]}
             >
-              <img alt="example" src={item.image} />
+              <img alt="example" src={item.imagen} />
               <div style={{ marginTop: "8px" }}>{item.precio}</div>
             </Card>
           </div>
