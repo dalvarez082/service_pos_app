@@ -2,6 +2,7 @@ import React, {useEffect,useState} from "react";
 import { Card } from "antd";
 import { colors } from "@mui/material";
 import Grid_list_product from "./Components/Grid_list_product";
+import Add_product from "./Components/Add_product";
 import Cookies from "cookies-js";
 import axios from "axios";
 
@@ -119,6 +120,8 @@ const List_product = () => {
           backgroundColor: "#F5F5F5",
           marginBottom: "20px",
           margin: "5px",
+
+          justifyContent: "flex-end",
         }}
       >
         <Card
@@ -128,17 +131,22 @@ const List_product = () => {
              backgroundColor: "#F5F5F5"
             
             }}
-        ></Card>
+        >
+           <Add_product></Add_product>
+        </Card>
       </div>
 
-      <div style={{ flex: "1 1 auto", margin: "5px" }}>
-        <Card style={{ height: "100%" }}>
-        <Grid_list_product items={items}/>
+        <Card style={{
+            height:"75%",
+            margin: "5px"
+        }}>
+
+            <Grid_list_product items={items}/>
 
 
         </Card>
       </div>
-    </div>
+   
   );
 };
 

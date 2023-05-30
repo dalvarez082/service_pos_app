@@ -78,8 +78,13 @@ const Grid_list_product = ({ items }) => {
                   </Tooltip>
                 </div>,
               ]}
-             
-              actions={[<Add_product key="Edit"></Add_product>]}
+              description={item.description}
+              actions={[
+
+                <Tooltip title="Editar" color="cyan" key="edit">
+        <Button type="primary" onClick={console.log("")} icon={<EditNote />} />
+      </Tooltip>
+              ]}
             >
               <img alt="example" src={item.imagen} />
               <div style={{ marginTop: "8px" }}>{item.precio}</div>
