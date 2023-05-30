@@ -7,66 +7,7 @@ import Cookies from "cookies-js";
 import axios from "axios";
 
 const List_product = () => {
-  // const items = [
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-  //   {
-  //     id: 1,
-  //     nombre: "Producto 1",
-  //     precio: "43500",
-  //     image:
-  //       "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-  //   },
-
-  //   // Agrega más elementos según sea necesario
-  // ];
+  
 
   const [items , setItems] = useState([]);
 
@@ -84,10 +25,10 @@ const List_product = () => {
         },
       });
 
-      const products = res.data.map((product) => ({
+      const products = res?.data.length >=1  && res.data.map((product) => ({
         ...product,
         id: product.id_product,        
-      }));   
+      })) || [];   
       
       setItems(products)
 
@@ -141,7 +82,7 @@ const List_product = () => {
             margin: "5px"
         }}>
 
-            <Grid_list_product items={items}/>
+            <Grid_list_product items={items} load_product={load_product}/>
 
 
         </Card>
