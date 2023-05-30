@@ -51,7 +51,7 @@ const Grid_list_product = ({ items, load_product }) => {
           overflowY: "scroll",
         }}
       >
-        {items.map((item) => (
+        {items.lenght >=1 && items.map((item) => (
           <div
             key={item.id}
             
