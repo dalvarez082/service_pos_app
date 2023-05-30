@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "antd";
 import { colors } from "@mui/material";
 import Grid_list_product from "./Components/Grid_list_product";
+import Add_product from "./Components/Add_product";
 
 const List_product = () => {
   const items = [
@@ -80,6 +81,8 @@ const List_product = () => {
           backgroundColor: "#F5F5F5",
           marginBottom: "20px",
           margin: "5px",
+
+          justifyContent: "flex-end",
         }}
       >
         <Card
@@ -104,7 +107,7 @@ const List_product = () => {
 
         </Card>
       </div>
-    </div>
+   
   );
 };
 
