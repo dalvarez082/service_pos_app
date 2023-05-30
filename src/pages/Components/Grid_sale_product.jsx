@@ -61,7 +61,11 @@ const Grid_sale_product = ({ items , addProduct }) => {
                   </Tooltip>,
                 ]}
               >
-                <img alt="example" src={item.imagen} />
+                <img 
+                alt="example" 
+                src={item.imagen}
+                style={{ width: "250px", height: "250px" }}
+                 />
                 <div style={{ marginTop: "8px" }}>{item.precio}</div>
               </Card>
             </Tooltip>
