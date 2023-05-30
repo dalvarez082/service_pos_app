@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Cookies from "cookies-js";
+import axios from "axios";
 import ImgCrop from "antd-img-crop";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import AddIcon from "@mui/icons-material/Add";
 import {
   Button,
@@ -15,10 +18,12 @@ import {
 
 } from "antd";
 
-const Add_product = () => {
+const Add_product = ({load_product}) => {
   //////////////////////////////////(      MODAL      )////////////////////////////////////////
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [option, setOption] = useState(false);
+
   const formRef = React.useRef();
   const uploadRef = React.useRef();
 
@@ -31,6 +36,8 @@ const Add_product = () => {
     form
       .validateFields()
       .then((values) => {
+        console.log(values)
+        add_product(values);
         form.resetFields();
         setIsModalOpen(false);
       })
@@ -49,16 +56,41 @@ const Add_product = () => {
 
   //////////////////////////////////(      SELECTOR      )////////////////////////////////////////
 
-  const options = [
-    {
-      value: "zhejiang",
-      label: "Zhejiang",
-    },
-    {
-      value: "camila",
-      label: "camila",
-    },
-  ];
+  useEffect(() => {
+    load_type_product();
+  }, []);
+
+  const load_type_product = async () => {
+    const token = Cookies.get("token");
+    try {
+      const res = await axios.get("http://localhost:3001/typeProduct", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const type_products = res.data.map((item) => ({
+        value: item.id_type,
+        label: item.nombre,
+      }));
+
+      setOption(type_products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  // const options = [
+  //   {
+  //     value: "zhejiang",
+  //     label: "Zhejiang",
+  //   },
+  //   {
+  //     value: "camila",
+  //     label: "camila",
+  //   },
+  // ];
 
   const { TextArea } = Input;
 
@@ -92,6 +124,52 @@ const Add_product = () => {
     imgWindow?.document.write(image.outerHTML);
   };
 
+
+
+  //////////////////////////////////(      AÑADIR PRODUCTO      )////////////////////////////////////////
+
+
+  const add_product = (values) => {
+    const form = formRef.current;
+      console.log("values: ",values);
+      const newProduct = {
+
+        id_type: values.tipo,
+        cc_user : "12345",
+        nombre: values.nombre, 
+        precio: +values.precio,
+        imagen:"hola",
+        descripcion: values.descripcion       
+      };
+      const token = Cookies.get('token');
+      const url = "http://localhost:3001/product";
+      console.log(newProduct)      
+      axios
+        .post(url, newProduct, {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        })
+        .then((res) => {
+          console.log("Producto agregado exitosamente");
+          notification.success({
+            message: <strong>Producto agregado exitosamente</strong>,
+            placement: "top",
+            duration: 3,
+            icon: <CheckCircleOutlineIcon style={{ color: "green" }} />,
+            closeIcon: null,
+          });
+          form.resetFields();
+          console.log(newClient);
+          onClose();
+          load_product();
+        })
+        .catch((error) => {
+          console.log("Ha ocurrido un error al agregar el producto:", error);
+        });
+
+  };
+
   return (
     <>
       <Modal
@@ -122,7 +200,7 @@ const Add_product = () => {
               <Form.Item label=" Tipo y nombre">
                 <Space.Compact>
                   <Form.Item
-                    name={["nombre", "tipo"]}
+                    name="tipo"
                     noStyle
                     rules={[
                       {
@@ -134,7 +212,7 @@ const Add_product = () => {
                     <Select
                       showSearch
                       placeholder="selecciona el tipo"
-                      options={options}
+                      options={option}
                       optionFilterProp="children"
                       onChange={onChange}
                       onSearch={onSearch}
@@ -146,7 +224,7 @@ const Add_product = () => {
                     ></Select>
                   </Form.Item>
                   <Form.Item
-                    name={["nombre", "nombre"]}
+                    name="nombre"
                     noStyle
                     rules={[
                       {
