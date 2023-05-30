@@ -7,6 +7,7 @@ import Cookies from "cookies-js";
 import axios from "axios";
 
 const List_product = () => {
+  
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -22,12 +23,16 @@ const List_product = () => {
         },
       });
 
-      const products = res.data.map((product) => ({
+      const products = res?.data.length >=1  && res.data.map((product) => ({
         ...product,
-        id: product.id_product,
-      }));
+        id: product.id_product,        
+      }));   
+      
+      setItems(products)
 
-      setItems(products);
+
+
+      
     } catch (error) {
       console.log(error);
     }
@@ -65,15 +70,17 @@ const List_product = () => {
         </Card>
       </div>
 
-      <Card
-        style={{
-          height: "75%",
-          margin: "5px",
-        }}
-      >
-        <Grid_list_product items={items} />
-      </Card>
-    </div>
+        <Card style={{
+            height:"75%",
+            margin: "5px"
+        }}>
+
+            <Grid_list_product items={items} load_product={load_product}/>
+
+
+        </Card>
+      </div>
+   
   );
 };
 

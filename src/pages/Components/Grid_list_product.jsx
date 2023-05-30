@@ -3,13 +3,32 @@ import React, { useState } from "react";
 import { Card, Button, Tooltip, Popconfirm } from "antd";
 import { Delete, EditNote, ErrorOutline } from "@mui/icons-material";
 import Add_product from "./Add_product";
+import Cookies from "cookies-js";
+import axios from "axios";
 
-const Grid_list_product = ({ items }) => {
-  const [selectedItem, setSelectedItem] = useState(null);
+const Grid_list_product = ({ items, load_product }) => {
+  
 
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-    console.log(item.title);
+ 
+
+  const delete_product = async (id_product) => {
+   
+   
+    const token = Cookies.get("token");
+    try {
+      const res = await axios.delete(
+        `http://localhost:3001/product/${id_product}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      load_product();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -35,7 +54,7 @@ const Grid_list_product = ({ items }) => {
         {items.map((item) => (
           <div
             key={item.id}
-            onClick={() => handleItemClick(item)}
+            
             style={{ cursor: "pointer" }}
           >
             <Card
@@ -65,6 +84,7 @@ const Grid_list_product = ({ items }) => {
                           ¿Está seguro que quiere eliminar este producto?
                         </strong>
                       }
+                      onConfirm={() => delete_product(item.id_product)}
                       okText="Yes"
                       cancelText="No"
                       icon={
@@ -80,10 +100,13 @@ const Grid_list_product = ({ items }) => {
               ]}
               description={item.description}
               actions={[
-
                 <Tooltip title="Editar" color="cyan" key="edit">
-        <Button type="primary" onClick={console.log("")} icon={<EditNote />} />
-      </Tooltip>
+                  <Button
+                    type="primary"
+                    onClick={console.log("")}
+                    icon={<EditNote />}
+                  />
+                </Tooltip>,
               ]}
             >
               <img alt="example" src={item.imagen} />

@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Card, Button, Tooltip, Col, Row ,Popconfirm} from "antd";
 import { Delete, EditNote ,ErrorOutline} from "@mui/icons-material";
 import Edit_type_product from "./Edit_type_product";
+import Cookies from "cookies-js";
+import axios from "axios";
 
-const Grid_type_product = ({ items }) => {
+const Grid_type_product = ({ items , load_type_product }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const handleItemClick = (item) => {
@@ -12,6 +14,27 @@ const Grid_type_product = ({ items }) => {
   };
 
   const { Meta } = Card;
+
+
+  const delete_type_product = async (id_type) => {
+   
+   
+    const token = Cookies.get("token");
+    try {
+      const res = await axios.delete(
+        `http://localhost:3001/typeProduct//${id_type}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      load_type_product();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div style={{ height: "490px", maxHeight: "100vh", overflow: "auto" }}>
@@ -51,6 +74,7 @@ const Grid_type_product = ({ items }) => {
                       description={
                         <strong>¿Esta seguro que quiere eliminar este producto?</strong>
                       }
+                      onConfirm={() => delete_type_product(item.id_type)}
                       okText="Yes"
                       cancelText="No"
                       icon={
@@ -80,7 +104,7 @@ const Grid_type_product = ({ items }) => {
                 }}
               >
                 <Meta
-                  description={item.description}
+                  description={item.descripcion}
                 />
               </div>
             </Card>
